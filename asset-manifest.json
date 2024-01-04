@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.9f8b7083.css",
-    "main.js": "/static/js/main.f37e61c1.js",
+    "main.css": "/static/css/main.24f14596.css",
+    "main.js": "/static/js/main.c7d6ca43.js",
+    "static/media/resume-lei.pdf": "/static/media/resume-lei.a3a04eab81da2812ceb6.pdf",
     "index.html": "/index.html",
-    "main.9f8b7083.css.map": "/static/css/main.9f8b7083.css.map",
-    "main.f37e61c1.js.map": "/static/js/main.f37e61c1.js.map"
+    "main.24f14596.css.map": "/static/css/main.24f14596.css.map",
+    "main.c7d6ca43.js.map": "/static/js/main.c7d6ca43.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f8b7083.css",
-    "static/js/main.f37e61c1.js"
+    "static/css/main.24f14596.css",
+    "static/js/main.c7d6ca43.js"
   ]
 }
