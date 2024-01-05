@@ -62,7 +62,7 @@ function About() {
       </ImageWrapper>
       <TextContainer>
         <Text>
-            Hi! I'm Lei (lay) Wu, a 3rd year computer science student at Carleton University. I have just recently finished all of my 2nd year courses and 
+            Hi! I'm Lei (/leɪ/) Wu, a 3rd year computer science student at Carleton University. I have just recently finished all of my 2nd year courses and 
             am currently in search of an internship/coop opportunity for the summer/fall 2024 terms.
           <br/><br/>
           I love to travel and explore new foods, the photos on the website are from my recent trip to asia. I enjoy living healthy by being a gym rat (230B | 275S | 365DL | Weight 165lbs - Sept 2023)

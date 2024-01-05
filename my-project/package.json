@@ -1,7 +1,7 @@
 {
   "name": "my-project",
   "version": "0.1.0",
-  "homepage": "https://imreallynameless.github.io",
+  "homepage": "https://imreallynameless.github.io/#",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
