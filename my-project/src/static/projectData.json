@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Clear Vision",
+        "image": "projects/clearvision.jpg",
+        "description": "Uses AI to detect what type of trash is in front of the camera and tells the user how to dispose of it. Winner of Maker Con Challenger at Hack the Hill 2023"
+    },
+    {
+        "title": "Starry Stocks",
+        "image": "../images/starrystocks.jpg",
+        "description": "Uses real time data to display stock prices and volumes being traded with stars",
+        "url": "https://github.com/voidranjer/conuhacks-wss"
+    },
+    {
+        "title:": "Search Engine",
+        "image": "../images/webcrawler.jpg",
+        "description": "Uses PageRank, cosine similarities, and TD-IDFs to rank web pages based on a user's search query.",
+        "url": "https://github.com/imreallynameless/not_final_project_2"
+    }
+]
