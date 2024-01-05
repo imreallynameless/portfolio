@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.8131990f.css",
-    "main.js": "/static/js/main.96e9883f.js",
+    "main.css": "/static/css/main.ee218011.css",
+    "main.js": "/static/js/main.2dd73718.js",
     "static/media/yes.jpg": "/static/media/yes.2b13ff373224e239a591.jpg",
     "static/media/resume-image.jpg": "/static/media/resume-image.b661e9e33a24dee2b3a0.jpg",
     "static/media/resume-lei.pdf": "/static/media/resume-lei.1f89d8f6e33c27fa93d2.pdf",
     "static/media/chip.jpg": "/static/media/chip.e32912414a02a577b5c5.jpg",
     "index.html": "/index.html",
-    "main.8131990f.css.map": "/static/css/main.8131990f.css.map",
-    "main.96e9883f.js.map": "/static/js/main.96e9883f.js.map"
+    "main.ee218011.css.map": "/static/css/main.ee218011.css.map",
+    "main.2dd73718.js.map": "/static/js/main.2dd73718.js.map"
   },
   "entrypoints": [
-    "static/css/main.8131990f.css",
-    "static/js/main.96e9883f.js"
+    "static/css/main.ee218011.css",
+    "static/js/main.2dd73718.js"
   ]
 }
