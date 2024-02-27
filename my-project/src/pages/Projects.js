@@ -36,7 +36,7 @@ function Projects() {
         </HeadingContainer>
         <ProjectComponent
           title="Clear Vision"
-          description = "An app that Uses AI to detect what type of trash is in front of the camera and tells the user how to dispose of it. Uses OpenCV and Tensorflow to detect what the current material in focus is, Python to perform calculations, and websockets for the real-time updates to the UI. A winner of Maker Con Challenger at Hack the Hill 2023 with over 100 category participants."
+          description = "Uses AI to detect what type of trash is in front of the camera and tells the user how to dispose of it. Uses OpenCV and Tensorflow to detect what the current material in focus is, Python to perform calculations, and websockets for the real-time updates to the UI. A winner of Maker Con Challenger at Hack the Hill 2023 with over 100 category participants."
           image = {clearvision}
           url = "https://devpost.com/software/clean-vision"
           />
