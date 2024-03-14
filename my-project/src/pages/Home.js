@@ -7,6 +7,7 @@ import ContactDialog from "../Components/Dialog";
 import Chip from "../images/chip.jpg";
 import ResumePhoto from "../images/resume-image.jpg";
 import Me from "../images/yes.jpg";
+import lei from "../images/lei.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -106,6 +107,14 @@ export default function Home() {
         </a>
           <Caption>resume</Caption>
         </TileContainer>
+
+        <TileContainer>
+        <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
+            <HoverableImage src={lei} alt="" placeholder = "blurred"/>
+        </a>
+          <Caption>design portfolio</Caption>
+        </TileContainer>
+
 
       
       </PageLayout>
