@@ -40,7 +40,7 @@ Identified outliers within transaction data by applying statistical models to th
 
 const KBSEdescriptionText =
 `Built a web‑crawler in Python to capture and parse webpage text, enabling the determination of search weightings.
-Developed search query functionality involving PageRank, cosine similarities, and TF‑IDFs to retrieve high ranking webpages
+Developed search query functionality involving PageRank, cosine similarities, and TF‑IDFs to retrieve high ranking webpages.
 Stored search quantities using various document database paradigms to improve runtime complexity.`;
 
 
