@@ -79,6 +79,11 @@ export default function Home() {
     window.location.href = "/about";
   };
   
+  const navigateToResume = () => {
+    // Use JavaScript to navigate to the resume page
+    window.location.href = "/resume";
+  }
+
   return (
     <> 
     <PageLayout>
@@ -102,9 +107,11 @@ export default function Home() {
         </TileContainer>
 
         <TileContainer>
-        <a href={Resume} target="_blank" rel="noreferrer">
+          <HoverableImageContainer onClick={navigateToResume}>
+        {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
             <HoverableImage src={ResumePhoto} alt="" placeholder = "blurred"/>
-        </a>
+            </HoverableImageContainer>    
+        {/* </a> */}
           <Caption>resume</Caption>
         </TileContainer>
 

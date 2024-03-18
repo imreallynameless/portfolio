@@ -90,12 +90,12 @@ function ContactDialog() {
           </ContactDetailIcon>
           <ContactDetailLabel>lw2002@hotmail.ca</ContactDetailLabel>
         </ContactDetailContainer>
-        <ContactDetailContainer>
+        {/* <ContactDetailContainer>
           <ContactDetailIcon>
             <Smartphone />
           </ContactDetailIcon>
           <ContactDetailLabel>+1 (226) 920-6464</ContactDetailLabel>
-        </ContactDetailContainer>
+        </ContactDetailContainer> */}
     </Dialog>
   </>
   )

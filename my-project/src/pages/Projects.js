@@ -26,6 +26,25 @@ const HeadingContainer = styled.div`
   padding: 40px 0;
 `;
 
+const CVdescriptionText = `Trained an AI model using OpenCV, Tensorflow, and Python 
+for identifying the waste type of the object currently in focus. 
+Enabled real-time updates to the user interface by leveraging WebSockets 
+to establish connectivity between the client and server-side. 
+Winner of 100+ teams at Hack the Hill Maker Con Challenge, 
+successfully developing an app that sorts through waste.`;
+
+const SSdescriptionText = 
+`Processed over 200,000 data points stored in JSON files, parsing them to extract successfully processed transactions.
+Built a web application using p5 capable of receiving data points through WebSockets to visualize stock transactions featuring a unique design.
+Identified outliers within transaction data by applying statistical models to the data collected over the trading time frame.`;
+
+const KBSEdescriptionText =
+`Built a web‑crawler in Python to capture and parse webpage text, enabling the determination of search weightings.
+Developed search query functionality involving PageRank, cosine similarities, and TF‑IDFs to retrieve high ranking webpages
+Stored search quantities using various document database paradigms to improve runtime complexity.`;
+
+
+
 function Projects() {
   return (
     <>
@@ -36,19 +55,19 @@ function Projects() {
         </HeadingContainer>
         <ProjectComponent
           title="Clear Vision"
-          description = "Uses AI to detect what type of trash is in front of the camera and tells the user how to dispose of it. Uses OpenCV and Tensorflow to detect what the current material in focus is, Python to perform calculations, and websockets for the real-time updates to the UI. A winner of Maker Con Challenger at Hack the Hill 2023 with over 100 category participants."
+          description = {CVdescriptionText}
           image = {clearvision}
           url = "https://devpost.com/software/clean-vision"
           />
         <ProjectComponent
           title="Starry Stocks"
-          description = "Uses real time data to display stock prices and volumes being traded with stars with the addition of anomalies which were any trade we found to be consider outliers. We have the constellations to  Uses websockets for the real-time , node/p5.js for backend/frontend respectively, and a little bit of statistics to display the data."
+          description = {SSdescriptionText}
           image = {starrystocks}
           url = "https://devpost.com/software/solar-system-stocks"
         />
         <ProjectComponent
           title="Keyword-Based Search Engine "
-          description = "Uses PageRank, cosine similarities, and TD-IDFs to rank web pages based on a user's search query. We orginally made the project in Python but then remade it in Java to intergrate a GUI (not so pretty)."
+          description = {KBSEdescriptionText}
           image = {webcrawler}
           url = ""
         />
