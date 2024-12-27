@@ -8,6 +8,8 @@ import Chip from "../images/chip.jpg";
 import ResumePhoto from "../images/resume-image.jpg";
 import Me from "../images/yes.jpg";
 import lei from "../images/lei.jpg";
+import bookshelf from "../images/bookshelf.jpg";
+import cook from "../images/cook.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -84,6 +86,13 @@ export default function Home() {
     window.location.href = "/resume";
   }
 
+  const navigateTo404 = () => {
+    // Use JavaScript to navigate to the 404 page
+    window.location.href = "/404";
+  }
+
+
+
   return (
     <> 
     <PageLayout>
@@ -120,6 +129,22 @@ export default function Home() {
             <HoverableImage src={lei} alt="" placeholder = "blurred"/>
         </a>
           <Caption>design portfolio</Caption>
+        </TileContainer>
+
+        <TileContainer>
+        <a href="https://burly-column-279.notion.site/Lei-s-book-shelf-1654466611d380369310f5081411d77a" target="_blank" rel="noreferrer">
+            <HoverableImage src={bookshelf} alt="" placeholder = "blurred"/>
+        </a>
+          <Caption>what i'm reading</Caption>
+        </TileContainer>
+
+        <TileContainer>
+          <HoverableImageContainer onClick={navigateTo404}>
+        {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
+            <HoverableImage src={cook} alt="" placeholder = "blurred"/>
+            </HoverableImageContainer>    
+        {/* </a> */}
+          <Caption>recipes and eats</Caption>
         </TileContainer>
 
 
