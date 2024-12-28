@@ -62,11 +62,11 @@ function About() {
       </ImageWrapper>
       <TextContainer>
         <Text>
-            Hi! I'm Lei (/leɪ/) Wu, a 3rd year computer science student at Carleton University. 
-            I'm currently in search of an internship/coop opportunity for the summer/fall 2024 terms.
-          I have experience in full stack and UI/UX development and I'm currently excited to learn more about cloud computing and machine learning.
+            Hi! I'm Lei (/leɪ/) Wu, a 4th year computer science student at Carleton University. 
+            I'm currently in search of an internship/coop opportunity for the summer 2025 term.
+          I have Co-op experience in Data Analysis and Project Coordination and am looking to expand my knowledge in the world of software.
           <br/><br/>
-          In my spare time, I love to travel and explore new foods, the photos on the website are from my recent trip to the east. I enjoy living healthy by being a gym rat (230B | 275S | 365DL | Weight 169lbs - Sept 2023)
+          In my spare time, I love to travel and explore new foods, the photos on the website are from my recent trip to the east. I enjoy living healthy by being a gym rat (230B | 275S | 385DL | Weight 180lbs - Dec 2024)
           I also have a burning passion for being great at what I do which can be showcased from my hitting leaderboard ranks in 3 Riot Games titles.
            
         </Text>

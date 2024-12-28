@@ -2,7 +2,6 @@
 import './App.css';
 import Footer from '../Components/Footer';
 import styled from "styled-components";
-import Resume from "../static/resume-lei.pdf";
 import ContactDialog from "../Components/Dialog";
 import Chip from "../images/chip.jpg";
 import ResumePhoto from "../images/resume-image.jpg";
@@ -23,7 +22,7 @@ const PageLayout = styled.main`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 3.5rem 2.5rem 1fr 1fr;
+    grid-auto-rows:7rem 7rem 1fr 2fr;
   }
 `;
 
@@ -46,7 +45,11 @@ const Caption = styled.p`
   margin-top: 1rem;
 `;
 
-const TileContainer = styled.div``;
+
+
+const TileContainer = styled.div
+`
+`;
 
 const HoverableImage = styled.img`
   transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
@@ -86,9 +89,9 @@ export default function Home() {
     window.location.href = "/resume";
   }
 
-  const navigateTo404 = () => {
+  const navigateToFood = () => {
     // Use JavaScript to navigate to the 404 page
-    window.location.href = "/404";
+    window.location.href = "/food";
   }
 
 
@@ -103,14 +106,14 @@ export default function Home() {
         <ContactDialog />
         <TileContainer>
           <HoverableImageContainer onClick={navigateToProjects}>
-            <HoverableImageStyled src={Chip} alt="" placeholder="blurred" />
+            <HoverableImage src={Chip} alt="" placeholder="blurred" />
           </HoverableImageContainer>
           <Caption>projects</Caption>
         </TileContainer>
 
         <TileContainer>
           <HoverableImageContainer onClick={navigateToAbout}>
-            <HoverableImageStyled src={Me} alt="" placeholder="blurred" />
+            <HoverableImage src={Me} alt="" placeholder="blurred" />
           </HoverableImageContainer>
           <Caption>about</Caption>
         </TileContainer>
@@ -139,7 +142,7 @@ export default function Home() {
         </TileContainer>
 
         <TileContainer>
-          <HoverableImageContainer onClick={navigateTo404}>
+          <HoverableImageContainer onClick={navigateToFood}>
         {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
             <HoverableImage src={cook} alt="" placeholder = "blurred"/>
             </HoverableImageContainer>    
@@ -147,9 +150,12 @@ export default function Home() {
           <Caption>recipes and eats</Caption>
         </TileContainer>
 
+        <caption> </caption>
+
 
       
       </PageLayout>
+
       <Footer />
 
 

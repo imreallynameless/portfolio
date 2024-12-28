@@ -5,6 +5,7 @@ import Projects from "./Projects";
 import NoPage from "./404";
 import Home from "./Home";
 import ResumeComponent from "./Resume"; // Assuming you have a ResumeComponent to render the PDF
+import Food from "./Food";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/resume",
-    element: <ResumeComponent />, // Render your ResumeComponent here
+    element: <ResumeComponent />, 
+  },
+  {
+    path: "/food",
+    element: <Food />,
   },
   {
     path: "*",
