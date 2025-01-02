@@ -36,7 +36,7 @@ const Text = styled.p`
   line-height: 2.8rem;
   overflow: auto;
 `
-
+// 0
 const CharSiuRibs  = 
 `My most recent recipe from The Woks of Life website, one of the three holy grail of asian cooking websites. 
  I've made this recipe a few times now and it's a hit every time. Always remember to use water in the pan when roasting
@@ -51,8 +51,97 @@ My favourite recipe from Ethan Chlebowski, I've made this recipe a few times now
 Every in the recipe sans the hot sauce is actually good. Instead of the hot sauce, I like to buy spicy garlic toum from Farm Boy if possible.
 `
 
+const Gyudon =
+`
+Easy and quick recipe from Just one Cookbook, I substitute the sake with more mirin and dashi with chicken stock. I like to add thai chili peppers for a bit of spice and this is a quick and easy meal to make.
+`
 
+const curryUdon =
+`
 
+`
+// 5
+const Steak =
+`
+
+`
+
+const Spaghetti =
+`
+
+`
+
+const Jeyuk =
+`
+
+`
+
+const Salmon =
+`
+
+`
+
+const SausageFest =
+`
+
+`
+// 10
+
+const LemongrassChicken =
+`
+`
+
+const SoonDubu =
+`
+
+`
+
+const PopcornChicken =
+`
+`
+
+const JapaneseCurryKatsu =
+`
+
+`
+
+const ButterChicken =
+`
+
+`
+
+//15 
+
+const Burritos =
+`
+`
+
+const BirriaTacos =
+``
+
+const ChineseVeggies =
+``
+
+const HongShaoRou =
+``
+
+const BraisedSoySauceChicken =
+`
+`
+
+// 20
+
+const MapoTofu =
+`
+`
+
+const HoneyButterChicken =
+`
+`
+
+const GochujangChicken =
+`
+`
 
 
 function Food() {
