@@ -56,6 +56,18 @@ function Music() {
           My Spotify Account
         </h1>
       </HeadingContainer>
+
+      <iframe 
+        style={{ borderRadius: "12px" }} 
+        src="https://open.spotify.com/embed/playlist/71gcONGYJKPYQiGRGYr6Qt?utm_source=generator&theme=0" 
+        width="300%" 
+        height="352rem" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+      >
+      </iframe>
     </Layout>
     <Footer />
   </>

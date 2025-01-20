@@ -3,6 +3,7 @@ import Footer from '../Components/Footer';
 import styled from "styled-components";
 import TopNav from '../Components/topnav';
 import cook from "../images/cook.jpg";
+import spotify from "../images/spotify.png";
 
 const PageLayout = styled.main`
   display: grid;
@@ -67,11 +68,14 @@ const HoverableImageStyled = styled(HoverableImage)`
 `;
 
 
-export default function Home() {
+export default function Playground() {
 
   const navigateToFood = () => {
-    // Use JavaScript to navigate to the 404 page
     window.location.href = "playground/food";
+  }
+
+  const navigateToMusic = () => {
+    window.location.href = "playground/music";
   }
 
 
@@ -91,6 +95,13 @@ export default function Home() {
             <HoverableImage src={cook} alt="" placeholder = "blurred"/>
             </HoverableImageContainer>    
           <Caption>recipes and eats</Caption>
+        </TileContainer>
+
+        <TileContainer>
+            <HoverableImageContainer onClick={navigateToMusic}>
+                <HoverableImage src={spotify} alt="" placeholder = "blurred"/>
+                </HoverableImageContainer>    
+            <Caption>stalk my music</Caption>
         </TileContainer>
 
         <caption> </caption>
