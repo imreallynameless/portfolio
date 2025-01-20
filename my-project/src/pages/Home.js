@@ -1,4 +1,3 @@
-
 import './App.css';
 import Footer from '../Components/Footer';
 import styled from "styled-components";
@@ -8,7 +7,7 @@ import ResumePhoto from "../images/resume-image.jpg";
 import Me from "../images/yes.jpg";
 import lei from "../images/lei.jpg";
 import bookshelf from "../images/bookshelf.jpg";
-import cook from "../images/cook.jpg";
+import playground from "../images/playground.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -89,9 +88,9 @@ export default function Home() {
     window.location.href = "/resume";
   }
 
-  const navigateToFood = () => {
+  const navigateToPlayground = () => {
     // Use JavaScript to navigate to the 404 page
-    window.location.href = "/food";
+    window.location.href = "/playground";
   }
 
 
@@ -142,12 +141,12 @@ export default function Home() {
         </TileContainer>
 
         <TileContainer>
-          <HoverableImageContainer onClick={navigateToFood}>
+          <HoverableImageContainer onClick={navigateToPlayground}>
         {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
-            <HoverableImage src={cook} alt="" placeholder = "blurred"/>
+            <HoverableImage src={playground} alt="" placeholder = "blurred"/>
             </HoverableImageContainer>    
         {/* </a> */}
-          <Caption>recipes and eats</Caption>
+          <Caption>Click Me to Visit Playground!</Caption>
         </TileContainer>
 
         <caption> </caption>
