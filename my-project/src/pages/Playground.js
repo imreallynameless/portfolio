@@ -14,21 +14,33 @@ const PageLayout = styled.main`
   align-items: center;
   padding: 45px 20px;
   gap: 20px;
-
+  
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows:7rem 7rem 1fr 2fr;
+    grid-auto-rows: 7rem auto auto;
+    gap: 10px;
   }
 `;
 
 const HeadingContainer = styled.div`
   grid-column: span 3;
+  margin-bottom: 5rem;
+  text-align: center;
+  @media (max-width: 768px) {
+    grid-column: span 2;
+    margin-bottom: 3rem;
+  }
+    
 `;
 
 const Heading = styled.h1`
   font-family: "Inter", sans-serif;
   font-size: 3rem;
   letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Caption = styled.p`
@@ -38,88 +50,72 @@ const Caption = styled.p`
   text-decoration: none;
   text-align: center;
   margin-top: 1rem;
-`;
-
-
-
-const TileContainer = styled.div
-`
-`;
-
-const HoverableImage = styled.img`
-  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
-
-  &:hover {
-    opacity: 0.7;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
   }
+`;
+
+const TileContainer = styled.div`
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 `;
 
 const HoverableImageContainer = styled.div`
-  transition: transform 0.3s ease-in-out;
-
+  width: 100%;
+  padding-top: 100%; /* Creates a square aspect ratio */
+  position: relative;
+  transition: opacity 0.3s ease-in-out;
+  
   &:hover {
     opacity: 0.7;
   }
 `;
 
-const HoverableImageStyled = styled(HoverableImage)`
+const HoverableImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover; /* This maintains aspect ratio while filling the container */
+  object-position: center;
 `;
 
-
 export default function Playground() {
-
   const navigateToFood = () => {
     window.location.href = "playground/food";
   }
-
+  
   const navigateToMusic = () => {
     window.location.href = "playground/music";
   }
-
-
-
+  
   return (
-    <> 
-    <PageLayout>
+    <>
+      <PageLayout>
         <TopNav />
         <HeadingContainer>
           <Heading>Welcome to All Things Playground</Heading>
         </HeadingContainer>
         
-
-
         <TileContainer>
           <HoverableImageContainer onClick={navigateToFood}>
-            <HoverableImage src={cook} alt="" placeholder = "blurred"/>
-            </HoverableImageContainer>    
+            <HoverableImage src={cook} alt="Cooking" placeholder="blurred"/>
+          </HoverableImageContainer>    
           <Caption>recipes and eats</Caption>
         </TileContainer>
-
+        
         <TileContainer>
-            <HoverableImageContainer onClick={navigateToMusic}>
-                <HoverableImage src={spotify} alt="" placeholder = "blurred"/>
-                </HoverableImageContainer>    
-            <Caption>stalk my music</Caption>
+          <HoverableImageContainer onClick={navigateToMusic}>
+            <HoverableImage src={spotify} alt="Spotify" placeholder="blurred"/>
+          </HoverableImageContainer>    
+          <Caption>stalk my music</Caption>
         </TileContainer>
-
-        <caption> </caption>
-
-
-      
       </PageLayout>
-
       <Footer />
-
-
-
-
-
-
-
     </>
-
-
   );
 }
