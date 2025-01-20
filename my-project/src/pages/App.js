@@ -7,6 +7,7 @@ import Home from "./Home";
 import ResumeComponent from "./Resume"; // Assuming you have a ResumeComponent to render the PDF
 import Food from "./Playground/Food";
 import Playground from "./Playground";
+import Music from "./Playground/Music";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
     element: <Playground />, // Playground as the parent route
   },
   {
-    path: "/food",
-    element: <Food />, // Food as the child route
+    path: "/playground/food", // Changed from "/food" to "/playground/food"
+    element: <Food />,
+  },
+  {
+    path: "/playground/music",
+    element: <Music />,
   },
   {
     path: "*",

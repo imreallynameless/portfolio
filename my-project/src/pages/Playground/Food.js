@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import TopNav from '../../Components/topnav'
+import PlayNav from '../../Components/playNav'
 import Footer from '../../Components/Footer'
 import styled from 'styled-components'
 import ProjectComponent from '../../Components/Project'
@@ -116,39 +116,7 @@ const recipes = [
 
 
 // 0
-const CharSiuRibs  = 
-`My most recent recipe from The Woks of Life website, one of the three holy grail of asian cooking websites. 
- I've made this recipe a few times now and it's a hit every time. Always remember to use water in the pan when roasting
- and I like to use honey as a substitue for sugar and t&t char siu sauce instead of maltose.`;
 
-const PadGraPow =
-`Also from The Woks of Life! Thai basil is a must, it's really what makes or breaks the dish. Literally tastes the same as Pai's Pad gra Pao in Toronto.`;
-
-const Shawarma =
-`
-My favourite recipe from Ethan Chlebowski, I've made this recipe a few times now, it my go to way to season chicken when I'm on the gym bro diet of chicken broccoli rice.
-Every in the recipe sans the hot sauce is actually good. Instead of the hot sauce, I like to buy spicy garlic toum from Farm Boy if possible.
-`
-
-const Gyudon =
-`
-Easy and quick recipe from Just one Cookbook, I substitute the sake with more mirin and dashi with chicken stock. I like to add thai chili peppers for a bit of spice and this is a quick and easy meal to make.
-`
-
-const curryUdon =
-`
-
-`
-// 5
-const Steak =
-`
-
-`
-
-const Spaghetti =
-`
-
-`
 
 const Jeyuk =
 `
@@ -204,9 +172,6 @@ const ChineseVeggies =
 const HongShaoRou =
 ``
 
-const BraisedSoySauceChicken =
-`
-`
 
 // 20
 
@@ -232,7 +197,7 @@ function Food() {
   };
   return (
     <>
-      <TopNav />
+      <PlayNav />
       <Layout>
         <HeadingContainer>
           <h1>Recipes and Eats</h1>

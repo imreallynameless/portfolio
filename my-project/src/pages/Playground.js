@@ -71,7 +71,7 @@ export default function Home() {
 
   const navigateToFood = () => {
     // Use JavaScript to navigate to the 404 page
-    window.location.href = "food";
+    window.location.href = "playground/food";
   }
 
 
