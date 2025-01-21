@@ -27,6 +27,16 @@ const HeadingContainer = styled.div`
   }
 `;
 
+const Heading = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
 const CurrentTrackContainer = styled.div`
   grid-column: span 3;
   background: rgba(0, 0, 0, 0.05);
@@ -96,7 +106,7 @@ function Music() {
       <PlayNav />
       <Layout>
         <HeadingContainer>
-          <h1>stalk my music</h1>
+          <Heading>stalk my music</Heading>
         </HeadingContainer>
         <CurrentTrackContainer>
         {nowPlaying ? (
@@ -112,7 +122,7 @@ function Music() {
         )} 
         </CurrentTrackContainer>
 
-        <h1>current mix</h1>
+        <Heading> current mix</Heading>
         <iframe
           style={{ borderRadius: "12px", gridColumn: "span 3" }}
           src="https://open.spotify.com/embed/playlist/71gcONGYJKPYQiGRGYr6Qt?utm_source=generator&theme=0"

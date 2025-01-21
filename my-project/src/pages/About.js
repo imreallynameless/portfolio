@@ -29,6 +29,16 @@ const HeadingContainer = styled.div`
   }
 `
 
+const Heading = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
 const ImageWrapper = styled.div`
   @media (max-width: 768px) {
     grid-column: span 2;
@@ -53,9 +63,7 @@ function About() {
     <TopNav />
     <Layout>
       <HeadingContainer>
-        <h1>
-          about me
-        </h1>
+        <Heading>About Me</Heading>
       </HeadingContainer>
       <ImageWrapper>
         <img src={Me} alt="" placeholder="blurred"></img>
