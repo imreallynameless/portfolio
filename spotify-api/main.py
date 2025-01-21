@@ -1,42 +1,61 @@
-from flask import Flask, jsonify
-import requests
 import os
+
+from flask import Flask, session, redirect, url_for, request
+from spotipy import Spotify
+from spotipy.oauth2 import SpotifyOAuth
+from spotipy.cache_handler import FlaskSessionCacheHandler
 
 app = Flask(__name__)
 
-# Get the Spotify access token (from an environment variable or hard-code it for testing)
-SPOTIFY_ACCESS_TOKEN = 'BQA9ktweTOfQ7U6PXI-qMDCZ5MRHLoqp2h1P2NYQR858XbTUj1mcYKmisGXqHHGQvEfb-SzVRfJzWEDS9n4PgJpQnc1ONIQyU9fctUraTYRdmpjZss0'
-SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
+app.config['SECRET_KEY'] = os.urandom(64)
 
-def get_current_track():
-    response = requests.get(
-        SPOTIFY_GET_CURRENT_TRACK_URL,
-        headers={
-            'Authorization': f'Bearer {SPOTIFY_ACCESS_TOKEN}'
-        }
-    )
-    if response.status_code == 200:
-        resp_json = response.json()
-        track_id = resp_json['item']['id']
-        track_name = resp_json['item']['name']
-        artists = resp_json['item']['artists']
-        artists_name = ", ".join([artist['name'] for artist in artists])
-        track_link = resp_json['item']['external_urls']['spotify']
-
-        return {
-            "id": track_id,
-            "name": track_name,
-            "artist": artists_name,
-            "link": track_link
-        }
-    else:
-        return {"error": "Unable to fetch the current track."}
-
-@app.route('/current-track', methods=['GET'])
-def current_track():
-    return jsonify(get_current_track())
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+client_id = '[REDACTED]'
+client_secret = '[REDACTED]'
+redirect_uri = 'http://localhost:5000/callback'
+scope = 'user-read-playback-state user-read-currently-playing'
 
 
+
+cache_handler = FlaskSessionCacheHandler(session)
+sp_oauth = SpotifyOAuth(
+    client_id=client_id,
+    client_secret=client_secret,
+    redirect_uri=redirect_uri,
+    scope=scope,
+    cache_handler=cache_handler,
+    show_dialog=True
+)
+
+sp = Spotify(auth_manager=sp_oauth)
+
+@app.route('/')
+def home():
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+    return redirect(url_for('currently_playing'))
+
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    token_info = sp_oauth.get_access_token(code)
+    if token_info is None:
+        return "Failed to retrieve access token.", 400
+    return redirect(url_for('currently_playing'))
+
+
+@app.route('/currently_playing')
+def currently_playing():
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+    playback = sp.current_playback()
+    if playback is None:
+        return "No track is currently playing."
+    return f"Currently playing: {playback['item']['name']} by {playback['item']['artists'][0]['name']}"
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
