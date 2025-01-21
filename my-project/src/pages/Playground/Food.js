@@ -200,7 +200,7 @@ function Food() {
       <PlayNav />
       <Layout>
         <HeadingContainer>
-          <h1>Recipes and Eats</h1>
+          <h1>recipes and eats</h1>
         </HeadingContainer>
         <TextContainer>
           <Text>

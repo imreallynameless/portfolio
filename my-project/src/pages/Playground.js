@@ -98,7 +98,7 @@ export default function Playground() {
       <PageLayout>
         <TopNav />
         <HeadingContainer>
-          <Heading>Welcome to All Things Playground</Heading>
+          <Heading>welcome to all things playground</Heading>
         </HeadingContainer>
         
         <TileContainer>

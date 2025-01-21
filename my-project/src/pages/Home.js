@@ -146,7 +146,7 @@ export default function Home() {
             <HoverableImage src={playground} alt="" placeholder = "blurred"/>
             </HoverableImageContainer>    
         {/* </a> */}
-          <Caption>Playground:Click Me!</Caption>
+          <Caption>playground:click me!</Caption>
         </TileContainer>
 
         <caption> </caption>
