@@ -54,7 +54,7 @@ function About() {
     <Layout>
       <HeadingContainer>
         <h1>
-          About Me
+          about me
         </h1>
       </HeadingContainer>
       <ImageWrapper>

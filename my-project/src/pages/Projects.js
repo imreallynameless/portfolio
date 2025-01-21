@@ -26,6 +26,17 @@ const HeadingContainer = styled.div`
   padding: 40px 0;
 `;
 
+const Heading = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+
 const CVdescriptionText = `Trained an AI model using OpenCV, Tensorflow, and Python 
 for identifying the waste type of the object currently in focus. 
 Enabled real-time updates to the user interface by leveraging WebSockets 
@@ -51,7 +62,7 @@ function Projects() {
     <TopNav />
     <Layout>
         <HeadingContainer>
-          <h1>Projects</h1>
+          <Heading> Projects </Heading>
         </HeadingContainer>
         <ProjectComponent
           title="Clear Vision"

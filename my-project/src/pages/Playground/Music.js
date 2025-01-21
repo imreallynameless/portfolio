@@ -40,20 +40,22 @@ const CurrentTrackContainer = styled.div`
 `;
 
 const TrackInfo = styled.div`
+  font-size: 2rem;
   display: flex;
   align-items: center;
   gap: 20px;
 `;
 
 const AlbumArt = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   border-radius: 8px;
 `;
 
 const TrackDetails = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5px;
 `;
 
@@ -94,21 +96,23 @@ function Music() {
       <PlayNav />
       <Layout>
         <HeadingContainer>
-          <h1>My Spotify Account</h1>
+          <h1>stalk my music</h1>
         </HeadingContainer>
-        
+        <CurrentTrackContainer>
         {nowPlaying ? (
           <TrackDetails>
-            <h2>{error ? "Last Played (Due to Error)" : "Now Playing"}</h2>
-            <p>Track: {nowPlaying.item.name}</p>
-            <p>Artist: {nowPlaying.item.artists.map(artist => artist.name).join(', ')}</p>
-            <p>Album: {nowPlaying.item.album.name}</p>
-            <img src={nowPlaying.item.album.images[0].url} alt={nowPlaying.item.album.name} width="300" />
+            <TrackInfo>{error ? "Last Played (Due to Error)" : "currently listening to"}</TrackInfo>
+            <TrackInfo>{nowPlaying.item.name}</TrackInfo>
+            <TrackInfo>by {nowPlaying.item.artists.map(artist => artist.name).join(', ')}</TrackInfo>
+            <TrackInfo>in  {nowPlaying.item.album.name}</TrackInfo>
+            <AlbumArt src={nowPlaying.item.album.images[0].url} alt={nowPlaying.item.album.name} />
           </TrackDetails>
         ) : (
           <p>No track is currently playing and no last played track available.</p>
-        )}
+        )} 
+        </CurrentTrackContainer>
 
+        <h1>current mix</h1>
         <iframe
           style={{ borderRadius: "12px", gridColumn: "span 3" }}
           src="https://open.spotify.com/embed/playlist/71gcONGYJKPYQiGRGYr6Qt?utm_source=generator&theme=0"
