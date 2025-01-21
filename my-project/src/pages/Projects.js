@@ -62,7 +62,7 @@ function Projects() {
     <TopNav />
     <Layout>
         <HeadingContainer>
-          <Heading> Projects </Heading>
+          <Heading> projects </Heading>
         </HeadingContainer>
         <ProjectComponent
           title="Clear Vision"
