@@ -24,6 +24,16 @@ const HeadingContainer = styled.div`
   padding: 40px 0;
 `;
 
+const Heading = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
 const TextContainer = styled.div`
   grid-column: span 2;
 `
@@ -200,7 +210,7 @@ function Food() {
       <PlayNav />
       <Layout>
         <HeadingContainer>
-          <h1>recipes and eats</h1>
+          <Heading>recipes and eats</Heading>
         </HeadingContainer>
         <TextContainer>
           <Text>

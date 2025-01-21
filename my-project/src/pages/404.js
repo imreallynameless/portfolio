@@ -31,6 +31,17 @@ const TextContainer = styled.div`
   grid-column: span 2;
 `
 
+const Heading = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.4rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+
 const Text = styled.p`
   font-size: 1.8rem;
   line-height: 2.8rem;
@@ -48,9 +59,7 @@ export default function NotFoundPage() {
     <>
       <Layout>
         <HeadingContainer>
-          <h1>
-            404: Page Not Found
-          </h1>
+          <Heading>404 - Page Not Found</Heading>
         </HeadingContainer>
         <TextContainer>
           <Text>
