@@ -63,7 +63,7 @@ function About() {
     <TopNav />
     <Layout>
       <HeadingContainer>
-        <Heading>About Me</Heading>
+        <Heading>about me</Heading>
       </HeadingContainer>
       <ImageWrapper>
         <img src={Me} alt="" placeholder="blurred"></img>
