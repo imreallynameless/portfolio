@@ -4,27 +4,22 @@ import PlayNav from '../../Components/playNav';
 import Footer from '../../Components/Footer';
 
 const Layout = styled.main`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 1100px;
   margin: auto;
-  align-items: center;
   padding: 50px 20px;
   gap: 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: auto;
+    padding: 20px;
   }
 `;
 
 const HeadingContainer = styled.div`
-  grid-column: span 3;
-
-  @media (max-width: 768px) {
-    grid-column: span 2;
-  }
+  width: 100%;
+  text-align: center;
 `;
 
 const Heading = styled.h1`
@@ -38,35 +33,39 @@ const Heading = styled.h1`
 `;
 
 const CurrentTrackContainer = styled.div`
-  grid-column: span 3;
+  width: 100%;
   background: rgba(0, 0, 0, 0.05);
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 20px;
-
-  @media (max-width: 768px) {
-    grid-column: span 2;
-  }
+  text-align: center;
 `;
 
 const TrackInfo = styled.div`
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const AlbumArt = styled.img`
   width: 300px;
   height: 300px;
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const TrackDetails = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 `;
 
 
@@ -108,6 +107,7 @@ function Music() {
         <HeadingContainer>
           <Heading>stalk my music</Heading>
         </HeadingContainer>
+        
         <CurrentTrackContainer>
         {nowPlaying ? (
           <TrackDetails>
