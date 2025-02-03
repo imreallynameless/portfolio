@@ -4,6 +4,7 @@ import styled from "styled-components";
 import TopNav from '../Components/topnav';
 import cook from "../images/cook.jpg";
 import spotify from "../images/spotify.png";
+import tft from "../images/tft.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -121,7 +122,7 @@ export default function Playground() {
 
         <TileContainer>
           <HoverableImageContainer onClick={navigateToTft}>
-            <HoverableImage src={spotify} alt="Spotify" placeholder="blurred"/>
+            <HoverableImage src={tft} alt="tft into the arcane" placeholder="blurred"/>
           </HoverableImageContainer>    
           <Caption>stalk my tft</Caption>
         </TileContainer>

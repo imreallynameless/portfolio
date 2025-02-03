@@ -165,6 +165,8 @@ function Tft() {
         <Layout>
           <HeadingContainer>
             <Heading>stalk my tft match history</Heading>
+            <h2>'lay' in Game Name and 'chip' in Tag Line</h2>
+            <h2>or try your own Username (North America region only)</h2>
             {rank && <p>Rank: {rank}</p>}
             {leaguePoints !== null && <p>League Points: {leaguePoints}</p>}
           </HeadingContainer>

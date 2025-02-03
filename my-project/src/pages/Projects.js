@@ -7,6 +7,8 @@ import ProjectData from '../static/projectData.json';
 import clearvision from '../images/clearvision.jpg'
 import starrystocks from '../images/starrystocks.jpg'
 import webcrawler from '../images/webcrawler.png'
+import investology from '../images/investology.jpg'
+import website from '../images/website.png'
 
 
 const Layout = styled.main`
@@ -37,6 +39,18 @@ const Heading = styled.h1`
 `;
 
 
+const PWdescriptionText = `Created personal website that acts as sort of a playground for me to practice and test out new ideas and small projects.
+Some examples include having the Spotify API to display my current playing song, a TFT match history tracker, and a cooking recipe finder. It's a lot of 
+fun trying to make this website in the full stack-app. Planning on trying to add something database related to play around with those.
+The next steps here is to try and upgrade the website to be using vite.
+`;
+
+const TSdescriptionText = `Developed an algorithm that offers a investment portfolio recommendation based on the user's MBTI after they complete a MBTI test.
+Utilized vite and react to create a responsive web application that allows users to take the MBTI test and receive their investment portfolio recommendation.
+Used FastAPI to pull quesiton data that is mapped to the 16personalities API to determine the user's MBTI. Also created our own API to take in test data and
+return the user's investment portfolio recommendation.
+`;
+
 const CVdescriptionText = `Trained an AI model using OpenCV, Tensorflow, and Python 
 for identifying the waste type of the object currently in focus. 
 Enabled real-time updates to the user interface by leveraging WebSockets 
@@ -64,6 +78,18 @@ function Projects() {
         <HeadingContainer>
           <Heading> projects </Heading>
         </HeadingContainer>
+        <ProjectComponent
+          title="Personal Website"
+          description = {PWdescriptionText}
+          image = {website}
+          url = "https://laywu.ca/playground"
+        />
+        <ProjectComponent
+          title="Investology"
+          description = {TSdescriptionText}
+          image = {investology}
+          url = "https://devpost.com/software/tarot-investing"
+        />
         <ProjectComponent
           title="Clear Vision"
           description = {CVdescriptionText}
