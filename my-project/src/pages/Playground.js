@@ -92,6 +92,10 @@ export default function Playground() {
   const navigateToMusic = () => {
     window.location.href = "playground/music";
   }
+
+  const navigateToTft = () => {
+    window.location.href = "playground/tft";
+  }
   
   return (
     <>
@@ -114,6 +118,14 @@ export default function Playground() {
           </HoverableImageContainer>    
           <Caption>stalk my music</Caption>
         </TileContainer>
+
+        <TileContainer>
+          <HoverableImageContainer onClick={navigateToTft}>
+            <HoverableImage src={spotify} alt="Spotify" placeholder="blurred"/>
+          </HoverableImageContainer>    
+          <Caption>stalk my tft</Caption>
+        </TileContainer>
+
       </PageLayout>
       <Footer />
     </>
