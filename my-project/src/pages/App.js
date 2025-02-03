@@ -8,6 +8,7 @@ import ResumeComponent from "./Resume"; // Assuming you have a ResumeComponent t
 import Food from "./Playground/Food";
 import Playground from "./Playground";
 import Music from "./Playground/Music";
+import Tft from "./Playground/Tft";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/playground/music",
     element: <Music />,
+  },
+  {
+    path: "/playground/Tft",
+    element: <Tft />,
   },
   {
     path: "*",
