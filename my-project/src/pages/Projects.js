@@ -3,13 +3,11 @@ import TopNav from '../Components/topnav'
 import Footer from '../Components/Footer'
 import styled from 'styled-components'
 import ProjectComponent from '../Components/Project'
-import ProjectData from '../static/projectData.json';
 import clearvision from '../images/clearvision.jpg'
 import starrystocks from '../images/starrystocks.jpg'
 import webcrawler from '../images/webcrawler.png'
 import investology from '../images/investology.jpg'
 import website from '../images/website.png'
-
 
 const Layout = styled.main`
   display: grid;

@@ -5,6 +5,7 @@ import TopNav from '../Components/topnav';
 import cook from "../images/cook.jpg";
 import spotify from "../images/spotify.png";
 import tft from "../images/tft.jpg";
+import bookshelf from "../images/bookshelf.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -127,6 +128,12 @@ export default function Playground() {
           <Caption>stalk my tft</Caption>
         </TileContainer>
 
+        <TileContainer>
+          <HoverableImageContainer onClick={navigateToBookshelf}>
+            <HoverableImage src={bookshelf} alt="bookshelf" placeholder="blurred"/>
+          </HoverableImageContainer>    
+          <Caption>book bar</Caption>
+        </TileContainer>
       </PageLayout>
       <Footer />
     </>
