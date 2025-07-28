@@ -60,6 +60,7 @@ const HoverableImage = styled.img`
 
 const HoverableImageContainer = styled.div`
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;
