@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import TopNav from '../../Components/topnav';
+import PlayNav from '../../Components/playNav'
 import React, { useState, useEffect } from "react";
 
 const PageLayout = styled.main`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 3.5rem 1fr 1fr;
   max-width: 1100px;
   margin: auto;
   align-items: center;
@@ -13,9 +12,13 @@ const PageLayout = styled.main`
   gap: 20px;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 7rem auto auto;
     gap: 10px;
     padding: 20px 10px;
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 20px 5px;
+    gap: 5px;
   }
 `;
 
@@ -27,16 +30,22 @@ const HeadingContainer = styled.div`
     grid-column: span 2;
     margin-bottom: 1.5rem;
   }
-    
+  @media (max-width: 480px) {
+    grid-column: span 1;
+  }
 `;
 
 const Heading = styled.h1`
   font-family: "Inter", sans-serif;
   font-size: 3rem;
   letter-spacing: 0.4rem;
-  
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
   }
 `;
 
@@ -47,9 +56,31 @@ const Caption = styled.p`
   text-decoration: none;
   text-align: center;
   margin-top: 1rem;
-  
+
   @media (max-width: 768px) {
     font-size: 0.8rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    letter-spacing: 0.3rem;
+  }
+`;
+
+const CategoryHeading = styled.h2`
+  grid-column: span 3;
+  font-family: "Inter", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    grid-column: span 2;
+    font-size: 1.4rem;
+  }
+  @media (max-width: 480px) {
+    grid-column: span 1;
+    font-size: 1.1rem;
   }
 `;
 
@@ -64,6 +95,11 @@ const TabContainer = styled.div`
     grid-column: span 2;
     gap: 10px;
     margin-bottom: 1rem;
+  }
+  @media (max-width: 480px) {
+    grid-column: span 1;
+    flex-direction: column;
+    gap: 5px;
   }
 `;
 
@@ -101,6 +137,9 @@ const Bookshelf = styled.div`
     gap: 15px;
     padding: 10px;
   }
+  @media (max-width: 480px) {
+    grid-column: span 1;
+  }
 `;
 
 const BookContainer = styled.div`
@@ -108,6 +147,12 @@ const BookContainer = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  cursor: pointer;
+
+  &:hover img {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transform: scale(1.02);
+  }
 `;
 
 const BookImage = styled.img`
@@ -116,6 +161,8 @@ const BookImage = styled.img`
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 
   @media (max-width: 768px) {
     width: 120px;
@@ -149,7 +196,7 @@ const HoverableImageContainer = styled.div`
   padding-top: 100%; /* Creates a square aspect ratio */
   position: relative;
   transition: opacity 0.3s ease-in-out;
-  
+
   &:hover {
     opacity: 0.7;
   }
@@ -165,54 +212,89 @@ const HoverableImage = styled.img`
   object-position: center;
 `;
 
-export default function Bookbar() {
+const BookCover = ({ title, imageUrl }) => {
+  return <BookImage src={imageUrl || 'https://via.placeholder.com/150x220'} alt={title} />;
+};
 
-  const [activeTab, setActiveTab] = useState("Finished");
+export default function Bookbar() {
+  const [activeTab, setActiveTab] = useState("all");
   const [books, setBooks] = useState([]);
 
-  const placeholderBooks = [
-    { Title: "Book 1", Author: "Author 1", Status: "Finished" },
-    { Title: "Book 2", Author: "Author 2", Status: "Finished" },
-    { Title: "Book 3", Author: "Author 3", Status: "Reading" },
-    { Title: "Book 4", Author: "Author 4", Status: "To read" },
-  ];
-
   useEffect(() => {
-    setBooks(placeholderBooks);
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch("/book-data.json");
+        const data = await response.json();
+        setBooks(data);
+      } catch (error) {
+        console.error("Error fetching book data:", error);
+      }
+    };
+
+    fetchBooks();
   }, []);
 
-  const filteredBooks = books.filter((book) => book.Status === activeTab);
-  
+  const filteredBooks = activeTab === "all" ? books : books.filter((book) => book.Status === activeTab);
+  const statuses = ["finished", "reading", "to read", "dropped"];
+
   return (
     <>
-      <TopNav />
+      <PlayNav/>
       <PageLayout>
         <HeadingContainer>
           <Heading>book bar</Heading>
-          <Caption>A collection of books I'm reading or have read.</Caption>
+          <Caption>a collection of books I'm reading or have read.</Caption>
         </HeadingContainer>
         <TabContainer>
-          <Tab active={activeTab === "Finished"} onClick={() => setActiveTab("Finished")}>
-            Finished
+          <Tab active={activeTab === "all"} onClick={() => setActiveTab("all")}>
+            all
           </Tab>
-          <Tab active={activeTab === "Reading"} onClick={() => setActiveTab("Reading")}>
-            Reading
+          <Tab active={activeTab === "finished"} onClick={() => setActiveTab("finished")}>
+            finished
           </Tab>
-          <Tab active={activeTab === "To read"} onClick={() => setActiveTab("To read")}>
-            To Read
+          <Tab active={activeTab === "reading"} onClick={() => setActiveTab("reading")}>
+            reading
+          </Tab>
+          <Tab active={activeTab === "to read"} onClick={() => setActiveTab("to read")}>
+            to read
+          </Tab>
+          <Tab active={activeTab === "dropped"} onClick={() => setActiveTab("dropped")}>
+            dropped
           </Tab>
         </TabContainer>
-        <Bookshelf>
-          {filteredBooks.map((book, index) => (
-            <BookContainer key={index}>
-              <BookImage src={`/books/Lei’s book shelf 1654466611d380369310f5081411d77a/The book shelf 1654466611d381269d04fcae75e81ec8/${book.Title}.jpg`} alt={book.Title} />
-              <BookTitle>{book.Title}</BookTitle>
-              <BookAuthor>{book.Author}</BookAuthor>
-            </BookContainer>
-          ))}
-        </Bookshelf>
+        {activeTab !== "all" ? (
+          <Bookshelf>
+            {filteredBooks.map((book, index) => (
+              <BookContainer key={index}>
+                <BookCover title={book.Title} imageUrl={book.cover} />
+                <BookTitle>{book.Title}</BookTitle>
+                <BookAuthor>{book.Author}</BookAuthor>
+              </BookContainer>
+            ))}
+          </Bookshelf>
+        ) : (
+          statuses.map((status) => {
+            const booksForStatus = books.filter(
+              (book) => book.Status === status
+            );
+            if (booksForStatus.length === 0) return null;
+            return (
+              <React.Fragment key={status}>
+                <CategoryHeading>{status}</CategoryHeading>
+                <Bookshelf>
+                  {booksForStatus.map((book, index) => (
+                    <BookContainer key={`${status}-${index}`}>
+                      <BookCover title={book.Title} imageUrl={book.cover} />
+                      <BookTitle>{book.Title}</BookTitle>
+                      <BookAuthor>{book.Author}</BookAuthor>
+                    </BookContainer>
+                  ))}
+                </Bookshelf>
+              </React.Fragment>
+            );
+          })
+        )}
       </PageLayout>
-
     </>
   );
 }

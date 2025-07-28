@@ -9,6 +9,7 @@ import Food from "./Playground/Food";
 import Playground from "./Playground";
 import Music from "./Playground/Music";
 import Tft from "./Playground/Tft";
+import Bookbar from "./Playground/Bookbar";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/playground/Tft",
     element: <Tft />,
+  },
+  {
+    path: "/playground/bookbar",
+    element: <Bookbar />,
   },
   {
     path: "*",

@@ -70,6 +70,7 @@ const HoverableImageContainer = styled.div`
   padding-top: 100%; /* Creates a square aspect ratio */
   position: relative;
   transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
   
   &:hover {
     opacity: 0.7;
@@ -97,6 +98,10 @@ export default function Playground() {
 
   const navigateToTft = () => {
     window.location.href = "playground/tft";
+  }
+  
+  const navigateToBookshelf = () => {
+    window.location.href = "playground/bookbar";
   }
   
   return (
