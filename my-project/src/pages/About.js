@@ -80,7 +80,6 @@ function About() {
         </Text>
       </TextContainer>
     </Layout>
-    <Footer />
   </>
   )
 }

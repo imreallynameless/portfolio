@@ -1,0 +1,38 @@
+[
+  {
+    "patchVersion": "1.0",
+    "date": "2025-07-27",
+    "title": "The Inaugural Patch",
+    "summary": "This is the very first version of the patch notes, setting up the new system and introducing some initial changes. More to come!",
+    "sections": [
+      {
+        "title": "✨ New Features",
+        "changes": [
+          {
+            "name": "Patch Notes System",
+            "type": "new",
+            "description": "The website now has a dedicated page for patch notes! This will serve as a changelog for all future updates, big and small. I've definitely missed the first 2 years of patches but it starts now."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "patchVersion": "1.0.1",
+    "date": "2025-07-28",
+    "title": "The First Update",
+    "summary": "This is the first update to the patch notes, setting up the new system and introducing some initial changes. More to come!",
+    "sections": [
+      {
+        "title": "✨ New Features",
+        "changes": [
+          {
+            "name": "Book bar",
+            "type": "new",
+            "description": "The book bar is now a thing in the playground! It's a simple bar that displays the books I'm reading and the progress I've made on them. It's a work in progress and will be updated as I read more books. I'm using the Google Books API to fetch the books and the progress is tracked in the browser's local storage."
+          }
+        ]
+      }
+    ]
+  }
+]

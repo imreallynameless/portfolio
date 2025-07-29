@@ -6,7 +6,7 @@ import Chip from "../images/chip.jpg";
 import ResumePhoto from "../images/resume-image.jpg";
 import Me from "../images/yes.jpg";
 import lei from "../images/lei.jpg";
-import bookshelf from "../images/bookshelf.jpg";
+import patchnotes from "../images/patchnotes.jpg";
 import playground from "../images/playground.jpg";
 
 const PageLayout = styled.main`
@@ -67,11 +67,6 @@ const HoverableImageContainer = styled.div`
   }
 `;
 
-const HoverableImageStyled = styled(HoverableImage)`
-  width: 100%;
-  height: 100%;
-`;
-
 
 export default function Home() {
   const navigateToProjects = () => {
@@ -90,8 +85,13 @@ export default function Home() {
   }
 
   const navigateToPlayground = () => {
-    // Use JavaScript to navigate to the 404 page
+    // Use JavaScript to navigate to the playground page
     window.location.href = "/playground";
+  }
+
+  const navigateToPatchnotes = () => {
+    // Use JavaScript to navigate to the patchnotes page
+    window.location.href = "/patchnotes";
   }
 
 
@@ -128,17 +128,10 @@ export default function Home() {
         </TileContainer>
 
         <TileContainer>
-        <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
-            <HoverableImage src={lei} alt="" placeholder = "blurred"/>
-        </a>
-          <Caption>design portfolio</Caption>
-        </TileContainer>
-
-        <TileContainer>
-        <a href="https://burly-column-279.notion.site/Lei-s-book-shelf-1654466611d380369310f5081411d77a" target="_blank" rel="noreferrer">
-            <HoverableImage src={bookshelf} alt="" placeholder = "blurred"/>
-        </a>
-          <Caption>what i'm reading</Caption>
+        <HoverableImageContainer onClick={navigateToPatchnotes}>
+            <HoverableImage src={patchnotes} alt="changelog" placeholder = "blurred"/>
+        </HoverableImageContainer>
+          <Caption>website patch notes</Caption>
         </TileContainer>
 
         <TileContainer>
@@ -150,13 +143,19 @@ export default function Home() {
           <Caption>playground:click me!</Caption>
         </TileContainer>
 
-        <caption> </caption>
+        <TileContainer>
+        <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
+            <HoverableImage src={lei} alt="" placeholder = "blurred"/>
+        </a>
+          <Caption>design portfolio</Caption>
+        </TileContainer>
 
+        <caption> </caption>
+        <Footer />
 
       
       </PageLayout>
 
-      <Footer />
 
 
 

@@ -1,0 +1,102 @@
+.patch-notes-container {
+    padding: 2rem;
+}
+
+.patch-notes-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.patches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.patch-tile {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out;
+}
+
+.patch-tile:hover {
+    transform: translateY(-5px);
+}
+
+.patch-header {
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.patch-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.patch-header .patch-date {
+    font-size: 0.9rem;
+    color: #586069;
+}
+
+.patch-header h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.patch-summary p {
+    color: #4f565d;
+}
+
+.patch-tile-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.patch-section h3 {
+    font-size: 1.8rem;
+    color: #0366d6;
+    border-bottom: 2px solid #0366d6;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.change {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid #ccc;
+}
+
+.change.new {
+    border-left-color: #28a745;
+}
+
+.change.adjustment {
+    border-left-color: #ffc107;
+}
+
+.change.bugfix {
+    border-left-color: #d73a49;
+}
+
+.change h4 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.change p {
+    margin: 0;
+    color: #586069;
+}
+
+.loading-screen {
+    text-align: center;
+    padding: 4rem;
+    font-size: 1.5rem;
+} 

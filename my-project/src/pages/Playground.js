@@ -140,7 +140,6 @@ export default function Playground() {
           <Caption>book bar</Caption>
         </TileContainer>
       </PageLayout>
-      <Footer />
     </>
   );
 }

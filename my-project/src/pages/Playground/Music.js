@@ -133,7 +133,6 @@ function Music() {
           loading="lazy"
         />
       </Layout>
-      <Footer />
     </>
   );
 }
