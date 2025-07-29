@@ -8,6 +8,7 @@ import starrystocks from '../images/starrystocks.jpg'
 import webcrawler from '../images/webcrawler.png'
 import investology from '../images/investology.jpg'
 import website from '../images/website.png'
+import playground from '../images/playground.png'
 
 const Layout = styled.main`
   display: grid;
@@ -36,11 +37,13 @@ const Heading = styled.h1`
   }
 `;
 
-
-const PWdescriptionText = `Created personal website that acts as sort of a playground for me to practice and test out new ideas and small projects.
-Some examples include having the Spotify API to display my current playing song, a TFT match history tracker, and a cooking recipe finder. It's a lot of 
+const PGdescriptionText = `Created a playground that acts as sort of a playground for me to practice and test out new ideas and small projects.
+Some examples include having the Spotify API to display my current playing song, a TFT match history tracker, bookbar and a cooking recipe finder. It's a lot of 
 fun trying to make this website in the full stack-app. Planning on trying to add something database related to play around with those.
 The next steps here is to try and upgrade the website to be using vite.
+`;
+
+const PWdescriptionText = `Created a personal website that acts as sort of a playground for me to practice and test out new ideas and small projects. Find more about the website in the patch notes.
 `;
 
 const TSdescriptionText = `Developed an algorithm that offers a investment portfolio recommendation based on the user's MBTI after they complete a MBTI test.
@@ -77,10 +80,16 @@ function Projects() {
           <Heading> projects </Heading>
         </HeadingContainer>
         <ProjectComponent
+          title="Playground"
+          description = {PGdescriptionText}
+          image = {playground}
+          url = "https://laywu.ca/playground"
+        />
+        <ProjectComponent
           title="Personal Website"
           description = {PWdescriptionText}
           image = {website}
-          url = "https://laywu.ca/playground"
+          url = "https://laywu.ca/patchnotes"
         />
         <ProjectComponent
           title="Investology"
@@ -107,7 +116,6 @@ function Projects() {
           url = ""
         />
       </Layout>
-    <Footer />
     </>
   )
 }

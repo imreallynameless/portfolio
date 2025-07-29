@@ -207,7 +207,6 @@ function Tft() {
             ))}
           </MatchContainer>
         </Layout>
-        <Footer />
       </>
     );
   }

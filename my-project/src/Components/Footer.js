@@ -16,7 +16,7 @@ const Footer = () => {
   
   return (
     <FooterPage id="connect">
-      <Author>lei wu - jan 2025</Author>
+      <Author>lei wu - july 2025</Author>
       <Icons/>
     </FooterPage>
   );
