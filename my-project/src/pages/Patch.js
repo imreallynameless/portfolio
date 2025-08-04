@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { ArrowBack } from '@mui/icons-material';
 import '../css/Patchnotes.css';
+
+const Nav = styled.nav`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+`;
+
+const CustomLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+`;
 
 const Patch = () => {
     const { patchVersion } = useParams();
@@ -30,8 +47,14 @@ const Patch = () => {
     }
 
     return (
-        <div className="patch-notes-container">
-            <div className="patch">
+        <>
+            <Nav>
+                <CustomLink to="/patchnotes">
+                    <ArrowBack style={{ fontSize: 40, color: "black" }} />
+                </CustomLink>
+            </Nav>
+            <div className="patch-notes-container">
+                <div className="patch">
                 <header className="patch-header">
                     <h1>Patch {patch.patchVersion}</h1>
                     <p className="patch-date">{new Date(patch.date).toLocaleDateString()}</p>
@@ -51,6 +74,7 @@ const Patch = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

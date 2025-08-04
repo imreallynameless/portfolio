@@ -17,12 +17,18 @@ import PlaygroundLayout from "../Components/PlaygroundLayout";
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/resume",
+    element: <ResumeComponent />,
+  },
+  {
     element: <Layout />,
     children: [
-      { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
       { path: "/projects", element: <Projects /> },
-      { path: "/resume", element: <ResumeComponent /> },
       { path: "/patchnotes", element: <Patchnotes /> },
       { path: "/patchnotes/:patchVersion", element: <Patch /> },
     ]

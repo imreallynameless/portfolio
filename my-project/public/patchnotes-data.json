@@ -34,5 +34,23 @@
         ]
       }
     ]
+  },
+  {
+    "patchVersion": "1.0.2",
+    "date": "2025-08-04",
+    "title": "TFT Match History Update",
+    "summary": "I've now added some more content to the TFT page, including win/losses and placement data. I ran into some issues with rate limiting so I tried adding caching and rate limiting to the worker. However this limits the worker to only seeing up to 7 matches at a time so I'm not sure if it's worth it.",
+    "sections": [
+      {
+        "title": "✨ TFT Match History",
+        "changes": [
+          {
+            "name": "TFT Match History",
+            "type": "new",
+            "description": "TFT match history now works!"
+          }
+        ]
+      }
+    ]
   }
 ]

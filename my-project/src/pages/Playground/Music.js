@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PlayNav from '../../Components/playNav';
-import Footer from '../../Components/Footer';
 
 const Layout = styled.main`
   display: flex;

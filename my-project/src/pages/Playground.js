@@ -1,10 +1,9 @@
 import './App.css';
-import Footer from '../Components/Footer';
 import styled from "styled-components";
 import TopNav from '../Components/topnav';
 import cook from "../images/cook.jpg";
 import spotify from "../images/spotify.png";
-import tft from "../images/tft.jpg";
+import tft from "../images/tfts15.avif";
 import bookshelf from "../images/bookshelf.jpg";
 
 const PageLayout = styled.main`
