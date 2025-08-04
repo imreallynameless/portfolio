@@ -12,7 +12,7 @@ import playground from "../images/playground.jpg";
 const PageLayout = styled.main`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 3.5rem 1fr 1fr;
+  grid-auto-rows: 3.5rem 1fr 1fr auto;
   max-width: 1100px;
   margin: auto;
   align-items: center;
@@ -21,7 +21,7 @@ const PageLayout = styled.main`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows:7rem 7rem 1fr 2fr;
+    grid-auto-rows: 7rem 7rem 1fr 2fr auto;
   }
 `;
 
@@ -48,6 +48,13 @@ const Caption = styled.p`
 
 const TileContainer = styled.div
 `
+`;
+
+const FooterContainer = styled.div`
+  grid-column: 1 / -1; /* Span all columns */
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;
 
 const HoverableImage = styled.img`
@@ -150,9 +157,9 @@ export default function Home() {
           <Caption>design portfolio</Caption>
         </TileContainer>
 
-        <caption> </caption>
-        <Footer />
-
+        <FooterContainer>
+          <Footer />
+        </FooterContainer>
       
       </PageLayout>
 
