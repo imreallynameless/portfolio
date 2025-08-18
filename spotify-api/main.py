@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 from flask import Flask, session, redirect, url_for, request, jsonify
 from spotipy import Spotify
@@ -6,13 +7,18 @@ from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
 from flask_cors import CORS
 
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = os.urandom(64)
 
-client_id = '[REDACTED]'
-client_secret = '[REDACTED]'
+client_id = os.getenv('SPOTIFY_CLIENT_ID')
+client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+
+if not client_id or not client_secret:
+    raise ValueError("Missing required environment variables: SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET")
 redirect_uri = 'http://localhost:5000/callback'
 scope = 'user-read-playback-state user-read-currently-playing'
 

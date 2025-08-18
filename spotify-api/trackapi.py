@@ -1,12 +1,20 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import CacheHandler
 
+# Load environment variables
+load_dotenv()
+
 app = FastAPI()
 
-client_id = '[REDACTED]'
-client_secret = '[REDACTED]'
+client_id = os.getenv('SPOTIFY_CLIENT_ID')
+client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+
+if not client_id or not client_secret:
+    raise ValueError("Missing required environment variables: SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET")
 redirect_uri = 'http://localhost:5000/callback'
 scope = 'user-read-playback-state user-read-currently-playing'
 

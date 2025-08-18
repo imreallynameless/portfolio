@@ -1,4 +1,9 @@
-const clientId = "[REDACTED]"; // Replace with your client id
+const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+
+if (!clientId) {
+    throw new Error("Missing required environment variable: VITE_SPOTIFY_CLIENT_ID");
+}
+
 const code = new URLSearchParams(window.location.search).get("code");
 
 if (!code) {
