@@ -10,6 +10,17 @@
       content="website created by Lay with lub"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://spotify.leiwuhoo.workers.dev" />
+    <link rel="preconnect" href="https://riot-tft.leiwuhoo.workers.dev" />
+    <link rel="preconnect" href="https://open.spotify.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@300;400&display=swap" /></noscript>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/

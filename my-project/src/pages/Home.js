@@ -3,11 +3,14 @@ import Footer from '../Components/Footer';
 import styled from "styled-components";
 import ContactDialog from "../Components/Dialog";
 import Chip from "../images/chip.jpg";
-import ResumePhoto from "../images/resume-image.jpg";
-import Me from "../images/yes.jpg";
-import lei from "../images/lei.jpg";
-import patchnotes from "../images/patchnotes.jpg";
-import playground from "../images/playground.jpg";
+import ResumePhoto from "../images/resume-image-500.jpg";
+import ResumePhoto800 from "../images/resume-image-800.jpg";
+import Me from "../images/yes-500.jpg";
+import Me800 from "../images/yes-800.jpg";
+import lei from "../images/lei.webp";
+import patchnotes from "../images/patchnotes.webp";
+import playground from "../images/playground-500.jpg";
+import playground800 from "../images/playground-800.jpg";
 
 const PageLayout = styled.main`
   display: grid;
@@ -18,6 +21,8 @@ const PageLayout = styled.main`
   align-items: center;
   padding: 45px 20px;
   gap: 20px;
+  /* Prevent layout shifts during loading */
+  min-height: 100vh;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -30,24 +35,39 @@ const HeadingContainer = styled.div`
 `;
 
 const Heading = styled.h1`
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
   font-size: 3rem;
   letter-spacing: 0.4rem;
+  /* Prevent layout shift during font loading */
+  font-display: swap;
+  line-height: 1.2;
+  margin: 0;
 `;
 
 const Caption = styled.p`
   letter-spacing: 0.4rem;
   font-size: 1.3rem;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
   text-decoration: none;
   text-align: center;
   margin-top: 1rem;
+  /* Prevent layout shift during font loading */
+  font-display: swap;
+  line-height: 1.4;
+  margin-bottom: 0;
 `;
 
 
 
-const TileContainer = styled.div
-`
+const TileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  /* Reserve space to prevent layout shifts */
+  min-height: 400px;
+  justify-content: flex-start;
 `;
 
 const FooterContainer = styled.div`
@@ -59,6 +79,13 @@ const FooterContainer = styled.div`
 
 const HoverableImage = styled.img`
   transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Prevent layout shift during image loading */
+  display: block;
+  background-color: #f5f5f5;
 
   &:hover {
     opacity: 0.7;
@@ -68,6 +95,13 @@ const HoverableImage = styled.img`
 const HoverableImageContainer = styled.div`
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
+  /* Prevent layout shift by maintaining aspect ratio */
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 3/4; /* Standard aspect ratio for most images */
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f5f5f5; /* Placeholder while loading */
 
   &:hover {
     opacity: 0.7;
@@ -113,14 +147,21 @@ export default function Home() {
         <ContactDialog />
         <TileContainer>
           <HoverableImageContainer onClick={navigateToProjects}>
-            <HoverableImage src={Chip} alt="" placeholder="blurred" />
+            <HoverableImage src={Chip} alt="Projects" loading="lazy" decoding="async" />
           </HoverableImageContainer>
           <Caption>projects</Caption>
         </TileContainer>
 
         <TileContainer>
           <HoverableImageContainer onClick={navigateToAbout}>
-            <HoverableImage src={Me} alt="" placeholder="blurred" />
+            <HoverableImage 
+              src={Me} 
+              srcSet={`${Me} 500w, ${Me800} 800w`}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              alt="About Lei Wu" 
+              loading="lazy"
+              decoding="async"
+            />
           </HoverableImageContainer>
           <Caption>about</Caption>
         </TileContainer>
@@ -128,7 +169,14 @@ export default function Home() {
         <TileContainer>
           <HoverableImageContainer onClick={navigateToResume}>
         {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
-            <HoverableImage src={ResumePhoto} alt="" placeholder = "blurred"/>
+            <HoverableImage 
+              src={ResumePhoto} 
+              srcSet={`${ResumePhoto} 500w, ${ResumePhoto800} 800w`}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              alt="Resume" 
+              loading="lazy"
+              decoding="async"
+            />
             </HoverableImageContainer>    
         {/* </a> */}
           <Caption>resume</Caption>
@@ -136,7 +184,7 @@ export default function Home() {
 
         <TileContainer>
         <HoverableImageContainer onClick={navigateToPatchnotes}>
-            <HoverableImage src={patchnotes} alt="changelog" placeholder = "blurred"/>
+            <HoverableImage src={patchnotes} alt="Website Patch Notes" loading="lazy" decoding="async"/>
         </HoverableImageContainer>
           <Caption>website patch notes</Caption>
         </TileContainer>
@@ -144,7 +192,14 @@ export default function Home() {
         <TileContainer>
           <HoverableImageContainer onClick={navigateToPlayground}>
         {/* <a href={Resume} target="_blank" rel="noreferrer"> */}
-            <HoverableImage src={playground} alt="" placeholder = "blurred"/>
+            <HoverableImage 
+              src={playground} 
+              srcSet={`${playground} 500w, ${playground800} 800w`}
+              sizes="(max-width: 768px) 50vw, 33vw"
+              alt="Playground" 
+              loading="lazy"
+              decoding="async"
+            />
             </HoverableImageContainer>    
         {/* </a> */}
           <Caption>playground:click me!</Caption>
@@ -152,7 +207,7 @@ export default function Home() {
 
         <TileContainer>
         <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
-            <HoverableImage src={lei} alt="" placeholder = "blurred"/>
+            <HoverableImage src={lei} alt="Design Portfolio" loading="lazy" decoding="async"/>
         </a>
           <Caption>design portfolio</Caption>
         </TileContainer>

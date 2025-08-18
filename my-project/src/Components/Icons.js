@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import {GitHub, LinkedIn, Description, Email} from '@mui/icons-material';
+// Import icons individually for better tree shaking
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import DescriptionIcon from '@mui/icons-material/Description';
+import EmailIcon from '@mui/icons-material/Email';
 import resumePDF from '../static/resume-lei.pdf';
 const Icons = () => {
   const FlexDiv = styled.div`
@@ -12,46 +16,71 @@ const Icons = () => {
     width: 100%;
     max-width: 30px;
     height: 30px;
-    :hover {
+    transition: fill 0.2s ease;
+    :hover,
+    :focus {
       fill: #7393B3;
+    }
+  `;
+
+  const StyledLink = styled.a`
+    border-radius: 4px;
+    padding: 4px;
+    transition: all 0.2s ease;
+    
+    :focus {
+      outline: 2px solid #7393B3;
+      outline-offset: 2px;
+    }
+    
+    :hover {
+      transform: translateY(-2px);
     }
   `;
 
   return (
     <FlexDiv>
-      <a 
+      <StyledLink 
         href="https://github.com/imreallynameless" 
         target="_blank" 
-        rel="noreferrer">
+        rel="noreferrer"
+        aria-label="Visit Lei Wu's GitHub profile">
         <Icon>
-          <GitHub />
+          <GitHubIcon />
         </Icon>
-      </a>
+      </StyledLink>
 
-      <a
+      <StyledLink
         href="https://www.linkedin.com/in/leiwuhoo/"
         target="_blank"
         rel="noreferrer"
+        aria-label="Visit Lei Wu's LinkedIn profile"
       >
         <Icon>
-          <LinkedIn />
+          <LinkedInIcon />
         </Icon>
-      </a>
+      </StyledLink>
 
-      <a
-        href= {resumePDF}
+      <StyledLink
+        href={resumePDF}
         target="_blank"
         rel="noreferrer"
+        aria-label="Download Lei Wu's resume (PDF)"
       >
         <Icon> 
-          <Description />
+          <DescriptionIcon />
         </Icon>
-      </a>
-      <a href="mailto:lw2002@hotmail.ca" target="_blank" rel="noreferrer">
+      </StyledLink>
+      
+      <StyledLink 
+        href="mailto:lw2002@hotmail.ca" 
+        target="_blank" 
+        rel="noreferrer"
+        aria-label="Send email to Lei Wu">
         <Icon>
-          <Email />
+          <EmailIcon />
         </Icon>
-      </a>
+      </StyledLink>
     </FlexDiv>
   );
 };

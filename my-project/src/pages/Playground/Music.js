@@ -38,6 +38,10 @@ const CurrentTrackContainer = styled.div`
   border-radius: 12px;
   margin-bottom: 20px;
   text-align: center;
+  min-height: 400px; /* Reserve space to prevent layout shift */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const TrackInfo = styled.div`
@@ -53,10 +57,14 @@ const AlbumArt = styled.img`
   width: 300px;
   height: 300px;
   border-radius: 8px;
+  /* Prevent layout shift during loading */
+  aspect-ratio: 1;
+  object-fit: cover;
+  background-color: #f0f0f0; /* Placeholder background */
 
   @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
+    width: 250px;
+    height: 250px; /* Maintain fixed dimensions on mobile too */
   }
 `;
 
@@ -67,36 +75,94 @@ const TrackDetails = styled.div`
   gap: 10px;
 `;
 
+// Skeleton loader to prevent layout shifts
+const SkeletonLoader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const SkeletonText = styled.div`
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  height: 20px;
+  width: ${props => props.width || '200px'};
+  
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+`;
+
+const SkeletonImage = styled.div`
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
+  
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+`;
+
 
 
 function Music() {
   const [nowPlaying, setNowPlaying] = useState(null);
   const [lastPlayed, setLastPlayed] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://spotify.leiwuhoo.workers.dev/get-now-playing')
-      .then(response => response.json())
-      .then(data => {
-        if (data.ERROR) {
-          setError(data.ERROR);
-          setNowPlaying(lastPlayed); // Set nowPlaying to lastPlayed on error
-        } else {
-          setNowPlaying((prevNowPlaying) => {
-            // Update lastPlayed only if nowPlaying changes
-            if (prevNowPlaying && prevNowPlaying.item.id !== data.item.id) {
-              setLastPlayed(prevNowPlaying);
-            }
-            return data;
-          });
-          setError(null);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching now playing data:', error);
-        setError('Error fetching now playing data');
-        setNowPlaying(lastPlayed); // Set nowPlaying to lastPlayed on fetch failure
-      });
+    // Defer the API call by a small amount to allow the page to render first
+    const timeoutId = setTimeout(() => {
+      fetch('https://spotify.leiwuhoo.workers.dev/get-now-playing')
+        .then(response => response.json())
+        .then(data => {
+          if (data.ERROR) {
+            setError(data.ERROR);
+            setNowPlaying(lastPlayed); // Set nowPlaying to lastPlayed on error
+          } else {
+            setNowPlaying((prevNowPlaying) => {
+              // Update lastPlayed only if nowPlaying changes
+              if (prevNowPlaying && prevNowPlaying.item.id !== data.item.id) {
+                setLastPlayed(prevNowPlaying);
+              }
+              return data;
+            });
+            setError(null);
+          }
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Error fetching now playing data:', error);
+          setError('Error fetching now playing data');
+          setNowPlaying(lastPlayed); // Set nowPlaying to lastPlayed on fetch failure
+          setLoading(false);
+        });
+    }, 100); // Small delay to defer loading
+
+    return () => clearTimeout(timeoutId);
   }, [lastPlayed]); // Include lastPlayed as a dependency
 
   return (
@@ -108,7 +174,15 @@ function Music() {
         </HeadingContainer>
         
         <CurrentTrackContainer>
-        {nowPlaying ? (
+        {loading ? (
+          <SkeletonLoader>
+            <SkeletonText width="300px" />
+            <SkeletonText width="250px" />
+            <SkeletonText width="200px" />
+            <SkeletonText width="180px" />
+            <SkeletonImage />
+          </SkeletonLoader>
+        ) : nowPlaying ? (
           <TrackDetails>
             <TrackInfo>{error ? "Last Played (Due to Error)" : "currently listening to"}</TrackInfo>
             <TrackInfo>{nowPlaying.item.name}</TrackInfo>
@@ -130,6 +204,7 @@ function Music() {
           allowFullScreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
+          title="Spotify Playlist"
         />
       </Layout>
     </>

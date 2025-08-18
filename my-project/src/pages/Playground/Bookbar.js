@@ -163,10 +163,15 @@ const BookImage = styled.img`
   margin-bottom: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  /* Prevent layout shift during loading */
+  aspect-ratio: 150/220;
+  background-color: #f5f5f5;
+  display: block;
 
   @media (max-width: 768px) {
     width: 120px;
     height: 180px;
+    aspect-ratio: 120/180;
   }
 `;
 
@@ -184,36 +189,19 @@ const BookAuthor = styled.p`
 `;
 
 
-const TileContainer = styled.div`
-  aspect-ratio: 1;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-`;
-
-const HoverableImageContainer = styled.div`
-  width: 100%;
-  padding-top: 100%; /* Creates a square aspect ratio */
-  position: relative;
-  transition: opacity 0.3s ease-in-out;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-const HoverableImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This maintains aspect ratio while filling the container */
-  object-position: center;
-`;
+// Removed unused styled components for cleaner bundle
 
 const BookCover = ({ title, imageUrl }) => {
-  return <BookImage src={imageUrl || 'https://via.placeholder.com/150x220'} alt={title} />;
+  return (
+    <BookImage 
+      src={imageUrl || 'https://via.placeholder.com/150x220/f5f5f5/666?text=Book'} 
+      alt={title}
+      loading="lazy"
+      onError={(e) => {
+        e.target.src = 'https://via.placeholder.com/150x220/f5f5f5/666?text=No+Image';
+      }}
+    />
+  );
 };
 
 export default function Bookbar() {

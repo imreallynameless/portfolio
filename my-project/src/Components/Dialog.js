@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Dialog } from '@mui/material';
-import {Smartphone, LinkedIn, Email} from '@mui/icons-material';
+// Import only the icons that are actually used
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import EmailIcon from '@mui/icons-material/Email';
 
 const ContactContainer = styled.div`
   grid-column: span 1;
@@ -80,13 +82,13 @@ function ContactDialog() {
       <ContactTitle id="contact-dialog-title">{"contact"}</ContactTitle>
       <ContactDetailContainer href="https://www.linkedin.com/in/leiwuhoo/">
           <ContactDetailIcon>
-            <LinkedIn/>
+            <LinkedInIcon/>
           </ContactDetailIcon>
           <ContactDetailLabel>LinkedIn</ContactDetailLabel>
         </ContactDetailContainer>
         <ContactDetailContainer href="mailto:stephenhwang156@outlook.com">
           <ContactDetailIcon>
-            <Email />
+            <EmailIcon />
           </ContactDetailIcon>
           <ContactDetailLabel>lw2002@hotmail.ca</ContactDetailLabel>
         </ContactDetailContainer>
