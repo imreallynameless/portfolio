@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PlayNav from '../../Components/playNav';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const Layout = styled.main`
   display: flex;
@@ -102,6 +103,29 @@ const ActivityName = styled.h3`
   font-size: 1.2rem;
   margin: 0;
   color: #333;
+`;
+
+const ActivityLink = styled.a`
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  &:hover {
+    color: #fc4c02;
+    text-decoration: underline;
+  }
+  
+  svg {
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  
+  &:hover svg {
+    opacity: 1;
+  }
 `;
 
 const ActivityDetails = styled.div`
@@ -530,7 +554,16 @@ function Strava() {
                       selectedMonthActivities.map((activity) => (
                         <ActivityCard key={activity.id}>
                           <ActivityInfo>
-                            <ActivityName>{activity.name}</ActivityName>
+                            <ActivityName>
+                              <ActivityLink 
+                                href={`https://www.strava.com/activities/${activity.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {activity.name}
+                                <OpenInNewIcon />
+                              </ActivityLink>
+                            </ActivityName>
                             <ActivityDetails>
                               <span>{formatDate(activity.start_date)}</span>
                               <span>{formatDistance(activity.distance)}</span>

@@ -140,5 +140,48 @@
         ]
       }
     ]
+  },
+  {
+    "patchVersion": "1.1.1",
+    "date": "2025-09-13",
+    "title": "Strava Activity Links & Twitter Integration",
+    "summary": "Quick quality-of-life improvements to enhance user experience with clickable activity links and Twitter/X social integration.",
+    "sections": [
+      {
+        "title": "🔗 Improvements",
+        "changes": [
+          {
+            "name": "Clickable Activity Links",
+            "type": "update",
+            "description": "All Strava activity names are now clickable links that open the full activity page on Strava in a new tab. Added external link icons for clear visual indication of clickability."
+          },
+          {
+            "name": "Twitter/X Social Integration",
+            "type": "new",
+            "description": "Added Twitter/X (@ujustgotleid) to both footer social icons and contact dialog with classic Twitter bird icon for better recognition."
+          },
+          {
+            "name": "Contact Dialog Enhancement",
+            "type": "update",
+            "description": "Updated LinkedIn contact entry to show handle 'leiwuhoo' instead of generic 'LinkedIn' text for more personalized experience."
+          }
+        ]
+      },
+      {
+        "title": "🐛 Bug Fixes",
+        "changes": [
+          {
+            "name": "Recipes Page Footer Fix",
+            "type": "fix",
+            "description": "Fixed duplicate footer appearing on recipes and eats page by removing redundant footer rendering from Food.js component."
+          },
+          {
+            "name": "Home Page Tile Alignment",
+            "type": "fix",
+            "description": "Fixed text alignment inconsistency on design portfolio tile to match other homepage tiles."
+          }
+        ]
+      }
+    ]
   }
 ]
