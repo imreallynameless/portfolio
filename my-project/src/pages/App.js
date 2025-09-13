@@ -14,6 +14,7 @@ const Playground = lazy(() => import("./Playground"));
 const Music = lazy(() => import("./Playground/Music"));
 const Tft = lazy(() => import("./Playground/Tft"));
 const Bookbar = lazy(() => import("./Playground/Bookbar"));
+const Strava = lazy(() => import("./Playground/Strava"));
 const Patchnotes = lazy(() => import('./Patchnotes'));
 const Patch = lazy(() => import('./Patch'));
 
@@ -121,6 +122,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <Bookbar />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "/playground/strava", 
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Strava />
           </Suspense>
         ) 
       },

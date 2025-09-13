@@ -52,5 +52,93 @@
         ]
       }
     ]
+  },
+  {
+    "patchVersion": "1.1.0",
+    "date": "2025-09-12",
+    "title": "Major Strava Integration Update",
+    "summary": "Complete real-time Strava integration added to the playground! This major update brings comprehensive activity tracking with webhooks, monthly organization, heart rate monitoring, and beautiful visual design. One of the biggest feature additions to the site so far.",
+    "sections": [
+      {
+        "title": "🏃‍♂️ New Features",
+        "changes": [
+          {
+            "name": "Strava Activities Integration",
+            "type": "new",
+            "description": "Complete Strava API integration with real-time webhook updates. Activities are automatically synced when uploaded to Strava and organized by month and year for easy browsing."
+          },
+          {
+            "name": "Monthly Activity Dashboard",
+            "type": "new",
+            "description": "Current month stats dashboard showing activities completed, distance covered, time in motion, average heart rate, and max heart rate. Automatically updates each month and provides motivational fitness insights."
+          },
+          {
+            "name": "Activity Color Coding",
+            "type": "new",
+            "description": "Different activity types now have distinct colors - red for runs, blue for rides, teal for swims, green for hikes, purple for workouts, and more. Makes it easy to identify activity types at a glance."
+          },
+          {
+            "name": "Heart Rate Analytics",
+            "type": "new",
+            "description": "Both average and max heart rate are displayed for individual activities and calculated for monthly summaries. Provides insights into training intensity and cardiovascular effort."
+          },
+          {
+            "name": "Cloudflare Workers Backend",
+            "type": "new",
+            "description": "Serverless backend using Cloudflare Workers with KV storage for efficient data management. Includes webhook handling, token refresh automation, and smart caching to respect Strava's rate limits."
+          }
+        ]
+      },
+      {
+        "title": "🎨 Design Updates",
+        "changes": [
+          {
+            "name": "Playground Layout Reorganization",
+            "type": "update",
+            "description": "Moved Strava to the first position in the playground grid and added proper Strava branding image. Updated the flow to prioritize fitness tracking."
+          },
+          {
+            "name": "Monthly Activity Cards",
+            "type": "new",
+            "description": "Interactive monthly cards that expand to show detailed activities when clicked. Each month displays summary statistics including activity count, total distance, and time."
+          },
+          {
+            "name": "Responsive Stats Grid",
+            "type": "new",
+            "description": "5-card stats grid that adapts to different screen sizes, showing current month's key fitness metrics with clear labels and engaging copy."
+          }
+        ]
+      },
+      {
+        "title": "⚙️ Technical Improvements",
+        "changes": [
+          {
+            "name": "Real-time Webhook System",
+            "type": "new",
+            "description": "Strava webhooks automatically update activity data in real-time when activities are uploaded, edited, or deleted. No need to wait for daily syncs."
+          },
+          {
+            "name": "Weekly Backup Sync",
+            "type": "new",
+            "description": "Automated weekly sync fetches comprehensive activity data from the last 2 years and organizes it by month. Ensures no activities are missed and provides data redundancy."
+          },
+          {
+            "name": "Smart Data Organization",
+            "type": "new",
+            "description": "Activities are automatically organized by month and year with efficient KV storage. Each month is stored separately for fast loading and scalable data management."
+          }
+        ]
+      },
+      {
+        "title": "🔄 Site Updates",
+        "changes": [
+          {
+            "name": "Footer Date Update",
+            "type": "update",
+            "description": "Updated footer to show 'Sept 2025' to reflect current month."
+          }
+        ]
+      }
+    ]
   }
 ]

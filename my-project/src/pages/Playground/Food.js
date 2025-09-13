@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import PlayNav from '../../Components/playNav'
-import Footer from '../../Components/Footer'
 import styled from 'styled-components'
 import ProjectComponent from '../../Components/Project'
 const images = require.context('../../images/food', false, /\.(jpg|jpeg|png|gif|svg)$/);
@@ -206,51 +204,47 @@ function Food() {
     setRandomRecipe(recipes[randomIndex]);
   };
   return (
-    <>
-      <PlayNav />
-      <Layout>
-        <HeadingContainer>
-          <Heading>recipes and eats</Heading>
-        </HeadingContainer>
-        <TextContainer>
-          <Text>
-            Recipe links with my own personal twist! My 3 goats for Asian cooking are The Woks of Life for Chinese, Maangchi for Korean, and Just One Cookbook for Japanese.
-            For science-based cooking and other recipes I like to watch Ethan Chlebowski and Kenji Lopez Alt on YouTube.
-          </Text>
-        </TextContainer>
+    <Layout>
+      <HeadingContainer>
+        <Heading>recipes and eats</Heading>
+      </HeadingContainer>
+      <TextContainer>
+        <Text>
+          Recipe links with my own personal twist! My 3 goats for Asian cooking are The Woks of Life for Chinese, Maangchi for Korean, and Just One Cookbook for Japanese.
+          For science-based cooking and other recipes I like to watch Ethan Chlebowski and Kenji Lopez Alt on YouTube.
+        </Text>
+      </TextContainer>
 
-        <Button onClick={handleRandomRecipe}>Show Me a Random Recipe</Button>
+      <Button onClick={handleRandomRecipe}>Show Me a Random Recipe</Button>
 
-        {randomRecipe && (
-          <div>
-            <h1>Random Recipe</h1>
-            <ProjectComponent
-              title={randomRecipe.title}
-              description={randomRecipe.description}
-              image={randomRecipe.image}
-              url={randomRecipe.url}
-            />
-          </div>
-        )}
-
+      {randomRecipe && (
         <div>
-          <h1>All Recipes</h1>
-          <RecipeList>
-          {recipes.map((recipe, index) => (
-            <ProjectComponent
-              key={index}
-              title={recipe.title}
-              description={recipe.description}
-              image={recipe.image}
-              url={recipe.url}
-            />
-            
-          ))}
-          </RecipeList>
+          <h1>Random Recipe</h1>
+          <ProjectComponent
+            title={randomRecipe.title}
+            description={randomRecipe.description}
+            image={randomRecipe.image}
+            url={randomRecipe.url}
+          />
         </div>
-      </Layout>
-      <Footer />
-    </>
+      )}
+
+      <div>
+        <h1>All Recipes</h1>
+        <RecipeList>
+        {recipes.map((recipe, index) => (
+          <ProjectComponent
+            key={index}
+            title={recipe.title}
+            description={recipe.description}
+            image={recipe.image}
+            url={recipe.url}
+          />
+          
+        ))}
+        </RecipeList>
+      </div>
+    </Layout>
   );
 }
 

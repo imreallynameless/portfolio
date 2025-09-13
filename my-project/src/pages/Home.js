@@ -206,9 +206,11 @@ export default function Home() {
         </TileContainer>
 
         <TileContainer>
-        <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
-            <HoverableImage src={lei} alt="Design Portfolio" loading="lazy" decoding="async"/>
-        </a>
+          <HoverableImageContainer>
+            <a href="https://drive.google.com/drive/folders/1_h2ZfbIYYnXxvJ5Qwi6ih7HVCbkNrE4X?usp=sharing" target="_blank" rel="noreferrer">
+              <HoverableImage src={lei} alt="Design Portfolio" loading="lazy" decoding="async"/>
+            </a>
+          </HoverableImageContainer>
           <Caption>design portfolio</Caption>
         </TileContainer>
 

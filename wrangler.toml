@@ -1,0 +1,13 @@
+name = "strava-worker"
+main = "strava-worker.js"
+compatibility_date = "2024-09-01"
+
+# KV namespace for storing Strava data
+[[kv_namespaces]]
+binding = "STRAVA_DATA"
+id = "2fa6b953ed4b423e89babe6963c4e0a2"
+preview_id = "a0b41fc689f64633b6c89acccaeadf84"
+
+# Scheduled triggers - runs weekly at 6 AM UTC Sunday (backup sync)
+[triggers]
+crons = ["0 6 * * SUN"]

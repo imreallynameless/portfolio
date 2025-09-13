@@ -5,11 +5,12 @@ import cook from "../images/cook.jpg";
 import spotify from "../images/spotify.png";
 import tft from "../images/tfts15.avif";
 import bookshelf from "../images/bookshelf.jpg";
+import strava from "../images/strava.webp";
 
 const PageLayout = styled.main`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 3.5rem 1fr 1fr;
+  grid-auto-rows: 3.5rem 1fr 1fr 1fr;
   max-width: 1100px;
   margin: auto;
   align-items: center;
@@ -18,7 +19,7 @@ const PageLayout = styled.main`
   
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 7rem auto auto;
+    grid-auto-rows: 7rem auto auto auto;
     gap: 10px;
   }
 `;
@@ -103,6 +104,10 @@ export default function Playground() {
     window.location.href = "playground/bookbar";
   }
   
+  const navigateToStrava = () => {
+    window.location.href = "playground/strava";
+  }
+  
   return (
     <>
       <PageLayout>
@@ -112,10 +117,10 @@ export default function Playground() {
         </HeadingContainer>
         
         <TileContainer>
-          <HoverableImageContainer onClick={navigateToFood}>
-            <HoverableImage src={cook} alt="Cooking" placeholder="blurred"/>
+          <HoverableImageContainer onClick={navigateToStrava}>
+            <HoverableImage src={strava} alt="strava activities" placeholder="blurred"/>
           </HoverableImageContainer>    
-          <Caption>recipes and eats</Caption>
+          <Caption>stalk my runs</Caption>
         </TileContainer>
         
         <TileContainer>
@@ -137,6 +142,13 @@ export default function Playground() {
             <HoverableImage src={bookshelf} alt="bookshelf" placeholder="blurred"/>
           </HoverableImageContainer>    
           <Caption>book bar</Caption>
+        </TileContainer>
+
+        <TileContainer>
+          <HoverableImageContainer onClick={navigateToFood}>
+            <HoverableImage src={cook} alt="Cooking" placeholder="blurred"/>
+          </HoverableImageContainer>    
+          <Caption>recipes and eats</Caption>
         </TileContainer>
       </PageLayout>
     </>
