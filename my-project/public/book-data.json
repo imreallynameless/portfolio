@@ -69,7 +69,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "finished",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=BUpA03D35doC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   },
   {
     "Title": "The Millionaire Next Door",
@@ -141,7 +141,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "finished",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=kRqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "Sorry I’m Late",
@@ -160,7 +160,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "finished",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=pSbgzpb59F8C&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   },
   {
     "Title": "The psychology of Money",
@@ -176,7 +176,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=p1heDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "The Magic of Thinking Big",
@@ -184,7 +184,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=Bhd-BAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "Rich20Something",
@@ -200,7 +200,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=wO3PCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "Linchpin",
@@ -216,7 +216,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=pDCPCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "The Millionaire Fastlane",
@@ -232,7 +232,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=ZH4oAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "This is Marketing",
@@ -240,7 +240,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=-AiFtwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   },
   {
     "Title": "Purple Cow",
@@ -264,7 +264,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=FEL8DlqjYEkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "Deep Work",
@@ -272,7 +272,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=4QTzCAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "The Psychology of Money",
@@ -280,7 +280,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "reading",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=TnrrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "The Ride of a Lifetime",
@@ -296,7 +296,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "to read",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
   },
   {
     "Title": "Operating Systems: Three Easy Pieces",
@@ -304,7 +304,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "dropped",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=0a-ouwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   },
   {
     "Title": "The Art of Doing Science and Engineering",
@@ -312,7 +312,7 @@
     "Rating": "",
     "Cover": "",
     "Status": "dropped",
-    "cover": null
+    "cover": "http://books.google.com/books/content?id=vKbpywEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   },
   {
     "Title": "The Wealth Ladder",

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PlayNav from '../../Components/playNav';
 
 const Layout = styled.main`
   display: flex;
@@ -166,9 +165,7 @@ function Music() {
   }, [lastPlayed]); // Include lastPlayed as a dependency
 
   return (
-    <>
-      <PlayNav />
-      <Layout>
+    <Layout>
         <HeadingContainer>
           <Heading>stalk my music</Heading>
         </HeadingContainer>
@@ -207,7 +204,6 @@ function Music() {
           title="Spotify Playlist"
         />
       </Layout>
-    </>
   );
 }
 

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PlayNav from '../../Components/playNav';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { 
+  LoadingText, 
+  SkeletonLoader, 
+  SkeletonCard 
+} from '../../Components/SharedStyledComponents';
+import { formatters, getActivityTypeColor, API_ENDPOINTS } from '../../utils/formatters';
 
 const Layout = styled.main`
   display: flex;
@@ -137,34 +142,7 @@ const ActivityDetails = styled.div`
   flex-wrap: wrap;
 `;
 
-const getActivityTypeColor = (activityType) => {
-  switch (activityType?.toLowerCase()) {
-    case 'run':
-    case 'running':
-      return '#e74c3c'; // Red for running
-    case 'ride':
-    case 'cycling':
-    case 'bike':
-      return '#3498db'; // Blue for cycling
-    case 'swim':
-    case 'swimming':
-      return '#1abc9c'; // Teal for swimming
-    case 'walk':
-    case 'walking':
-      return '#95a5a6'; // Gray for walking
-    case 'hike':
-    case 'hiking':
-      return '#27ae60'; // Green for hiking
-    case 'workout':
-    case 'crossfit':
-    case 'weightlifting':
-      return '#8e44ad'; // Purple for gym workouts
-    case 'yoga':
-      return '#f39c12'; // Orange for yoga
-    default:
-      return '#fc4c02'; // Default Strava orange
-  }
-};
+// Utility function moved to utils/formatters.js
 
 const ActivityType = styled.span`
   background: ${props => props.color || '#fc4c02'};
@@ -178,29 +156,7 @@ const ActivityType = styled.span`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 `;
 
-const SkeletonLoader = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
-const SkeletonCard = styled.div`
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 8px;
-  height: 80px;
-  
-  @keyframes loading {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
-`;
+// SkeletonLoader and SkeletonCard moved to SharedStyledComponents.js
 
 const YearSection = styled.div`
   width: 100%;
@@ -293,12 +249,7 @@ const MonthActivitiesHeading = styled.h4`
   text-align: center;
 `;
 
-const LoadingText = styled.div`
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  color: #666;
-  font-style: italic;
-`;
+// LoadingText moved to SharedStyledComponents.js
 
 function Strava() {
   const [monthlyData, setMonthlyData] = useState([]);
@@ -313,7 +264,7 @@ function Strava() {
     const timeoutId = setTimeout(async () => {
       try {
         // Fetch monthly data
-        const monthlyResponse = await fetch('https://strava-worker.leiwuhoo.workers.dev/activities-by-month');
+        const monthlyResponse = await fetch(API_ENDPOINTS.STRAVA_MONTHLY);
         const monthlyResponseData = await monthlyResponse.json();
         
         if (monthlyResponseData.error) {
@@ -335,7 +286,7 @@ function Strava() {
         if (currentMonthData) {
           // Fetch detailed activities for current month to calculate heart rate
           try {
-            const currentMonthActivitiesResponse = await fetch(`https://strava-worker.leiwuhoo.workers.dev/activities-by-month?month=${currentMonth}`);
+            const currentMonthActivitiesResponse = await fetch(`${API_ENDPOINTS.STRAVA_BASE}/activities-by-month?month=${currentMonth}`);
             const currentMonthActivitiesData = await currentMonthActivitiesResponse.json();
             
             if (!currentMonthActivitiesData.error && currentMonthActivitiesData.activities) {
@@ -401,7 +352,7 @@ function Strava() {
     setSelectedMonth(month.month);
     
     try {
-      const response = await fetch(`https://strava-worker.leiwuhoo.workers.dev/activities-by-month?month=${month.month}`);
+      const response = await fetch(`${API_ENDPOINTS.STRAVA_BASE}/activities-by-month?month=${month.month}`);
       const data = await response.json();
       
       if (data.error) {
@@ -419,31 +370,7 @@ function Strava() {
     setLoadingMonth(false);
   };
 
-  const formatDistance = (meters) => {
-    return (meters / 1000).toFixed(2) + ' km';
-  };
-
-  const formatTime = (seconds) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    if (hours > 0) {
-      return `${hours}h ${minutes}m`;
-    }
-    return `${minutes}m`;
-  };
-
-  const formatSpeed = (metersPerSecond) => {
-    const kmh = metersPerSecond * 3.6;
-    return kmh.toFixed(1) + ' km/h';
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    });
-  };
+  // Formatting functions moved to utils/formatters.js
 
   // Group months by year
   const monthsByYear = monthlyData.reduce((acc, month) => {
@@ -459,9 +386,7 @@ function Strava() {
   const sortedYears = Object.keys(monthsByYear).sort((a, b) => b - a);
 
   return (
-    <>
-      <PlayNav />
-      <Layout>
+    <Layout>
         <HeadingContainer>
           <Heading>strava activities</Heading>
         </HeadingContainer>
@@ -470,7 +395,7 @@ function Strava() {
           <>
             <HeadingContainer>
               <Heading style={{ fontSize: '2rem', marginBottom: '10px' }}>
-                {currentMonthStats.monthName} {currentMonthStats.year}
+                {currentMonthStats.monthName.toLowerCase()} {currentMonthStats.year}
               </Heading>
             </HeadingContainer>
             <StatsContainer>
@@ -479,11 +404,11 @@ function Strava() {
                 <StatLabel>Activities This Month</StatLabel>
               </StatCard>
               <StatCard>
-                <StatValue>{formatDistance(currentMonthStats.totalDistance)}</StatValue>
+                <StatValue>{formatters.distance(currentMonthStats.totalDistance)}</StatValue>
                 <StatLabel>Distance This Month</StatLabel>
               </StatCard>
               <StatCard>
-                <StatValue>{formatTime(currentMonthStats.totalTime)}</StatValue>
+                <StatValue>{formatters.time(currentMonthStats.totalTime)}</StatValue>
                 <StatLabel>Time This Month</StatLabel>
               </StatCard>
               <StatCard>
@@ -519,18 +444,18 @@ function Strava() {
                       onClick={() => handleMonthClick(month)}
                     >
                       <MonthName>
-                        {month.monthName}
+                        {month.monthName.toLowerCase()}
                         <span style={{ fontSize: '0.8rem', color: '#fc4c02' }}>
                           {month.activityCount} activities
                         </span>
                       </MonthName>
                       <MonthStats>
                         <MonthStat>
-                          <StatNumber>{formatDistance(month.totalDistance)}</StatNumber>
+                          <StatNumber>{formatters.distance(month.totalDistance)}</StatNumber>
                           <MonthStatLabel>Distance</MonthStatLabel>
                         </MonthStat>
                         <MonthStat>
-                          <StatNumber>{formatTime(month.totalTime)}</StatNumber>
+                          <StatNumber>{formatters.time(month.totalTime)}</StatNumber>
                           <MonthStatLabel>Time</MonthStatLabel>
                         </MonthStat>
                         <MonthStat>
@@ -545,7 +470,7 @@ function Strava() {
                 {selectedMonth && monthsByYear[year].find(m => m.month === selectedMonth) && (
                   <ExpandedActivities>
                     <MonthActivitiesHeading>
-                      {monthsByYear[year].find(m => m.month === selectedMonth)?.monthName} {year} Activities
+                      {monthsByYear[year].find(m => m.month === selectedMonth)?.monthName.toLowerCase()} {year} activities
                     </MonthActivitiesHeading>
                     
                     {loadingMonth ? (
@@ -565,20 +490,20 @@ function Strava() {
                               </ActivityLink>
                             </ActivityName>
                             <ActivityDetails>
-                              <span>{formatDate(activity.start_date)}</span>
-                              <span>{formatDistance(activity.distance)}</span>
-                              <span>{formatTime(activity.moving_time)}</span>
+                              <span>{formatters.date(activity.start_date)}</span>
+                              <span>{formatters.distance(activity.distance)}</span>
+                              <span>{formatters.time(activity.moving_time)}</span>
                               {activity.average_speed && (
-                                <span>{formatSpeed(activity.average_speed)}</span>
+                                <span>{formatters.speed(activity.average_speed)}</span>
                               )}
                               {activity.total_elevation_gain > 0 && (
-                                <span>↗ {Math.round(activity.total_elevation_gain)}m</span>
+                                <span>{formatters.elevation(activity.total_elevation_gain)}</span>
                               )}
                               {activity.average_heartrate && (
-                                <span>💓 {Math.round(activity.average_heartrate)} bpm avg</span>
+                                <span>💓 {formatters.heartRate(activity.average_heartrate)} avg</span>
                               )}
                               {activity.max_heartrate && (
-                                <span>❤️ {Math.round(activity.max_heartrate)} bpm max</span>
+                                <span>❤️ {formatters.heartRate(activity.max_heartrate)} max</span>
                               )}
                             </ActivityDetails>
                           </ActivityInfo>
@@ -597,7 +522,6 @@ function Strava() {
           )}
         </ActivitiesContainer>
       </Layout>
-    </>
   );
 }
 

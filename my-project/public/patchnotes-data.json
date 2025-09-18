@@ -183,5 +183,251 @@
         ]
       }
     ]
+  },
+  {
+    "patchVersion": "1.1.2",
+    "date": "2025-09-17",
+    "title": "MCP Integration & Resume Update",
+    "summary": "Added a new playground page for the Poke MCP Server project, updated resume with latest experience, and implemented lowercase styling consistency across the Strava integration.",
+    "sections": [
+      {
+        "title": "🚀 New Features",
+        "changes": [
+          {
+            "name": "Poke MCP Server Page",
+            "type": "new",
+            "description": "Added a new playground tile and page for the Poke MCP Server project. The page provides information about the Twitter metrics and automated reminders MCP server, then redirects to the GitHub repository. Features auto-redirect after 3 seconds with manual override option."
+          }
+        ]
+      },
+      {
+        "title": "📄 Content Updates",
+        "changes": [
+          {
+            "name": "Resume Update",
+            "type": "update",
+            "description": "Updated resume with latest professional experience, skills, and achievements. The resume reflects current expertise and career progression."
+          }
+        ]
+      },
+      {
+        "title": "🎨 Design Improvements",
+        "changes": [
+          {
+            "name": "Lowercase Month Styling",
+            "type": "update",
+            "description": "Updated all month names throughout the Strava page to display in lowercase for consistent styling. This includes current month headings, month cards, activity section headers, and individual activity dates."
+          },
+          {
+            "name": "Playground Grid Layout",
+            "type": "update",
+            "description": "Expanded playground grid layout to accommodate 6 tiles instead of 5, maintaining responsive design for both desktop and mobile viewing."
+          },
+          {
+            "name": "Poke Page Styling",
+            "type": "new",
+            "description": "Implemented lowercase text styling for the new Poke MCP Server page to maintain consistency with the overall site design aesthetic."
+          }
+        ]
+      },
+      {
+        "title": "⚙️ Technical Updates",
+        "changes": [
+          {
+            "name": "Route Configuration",
+            "type": "new",
+            "description": "Added proper React Router configuration for the new /playground/poke route with lazy loading and suspense handling for optimal performance."
+          },
+          {
+            "name": "Component Architecture",
+            "type": "new",
+            "description": "Created modular Poke.js component following established patterns from other playground pages, including PlayNav integration and consistent styling."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "patchVersion": "2.0.0",
+    "date": "2025-09-18",
+    "title": "Major Codebase Refactoring & Organization",
+    "summary": "Complete codebase overhaul with comprehensive refactoring, performance improvements, accessibility enhancements, and backend organization. This major version bump reflects significant architectural improvements that make the codebase more maintainable, performant, and accessible while organizing all playground backend services.",
+    "sections": [
+      {
+        "title": "🏗️ Code Architecture",
+        "changes": [
+          {
+            "name": "Shared Styled Components System",
+            "type": "new",
+            "description": "Created comprehensive SharedStyledComponents.js with centralized design tokens, common layouts, typography, and UI components. Eliminated ~200 lines of duplicate styled-component code across the application."
+          },
+          {
+            "name": "Navigation Pattern Modernization",
+            "type": "update",
+            "description": "Replaced all window.location.href calls with React Router's useNavigate() hook for proper client-side navigation. Improves performance by eliminating unnecessary page reloads."
+          },
+          {
+            "name": "Component Prop Validation",
+            "type": "new",
+            "description": "Added comprehensive PropTypes validation to components for better development experience and runtime error prevention."
+          },
+          {
+            "name": "Utility Functions Organization",
+            "type": "new",
+            "description": "Created utils/formatters.js with reusable formatting functions, API endpoints, and utility helpers. Eliminates duplicate functions across playground components."
+          }
+        ]
+      },
+      {
+        "title": "♿ Accessibility Improvements",
+        "changes": [
+          {
+            "name": "Proper Alt Text Implementation",
+            "type": "update",
+            "description": "Added descriptive alt attributes to all images throughout the application. Improved screen reader compatibility and semantic meaning."
+          },
+          {
+            "name": "ARIA Labels and Semantic HTML",
+            "type": "update",
+            "description": "Enhanced components with proper ARIA labels, aria-hidden attributes, and semantic HTML structure for better accessibility."
+          },
+          {
+            "name": "Keyboard Navigation Support",
+            "type": "update",
+            "description": "Improved focus management with proper focus indicators and keyboard-accessible button implementations."
+          },
+          {
+            "name": "Screen Reader Utilities",
+            "type": "new",
+            "description": "Added screen reader-only utility classes for enhanced accessibility without visual impact."
+          }
+        ]
+      },
+      {
+        "title": "🎨 CSS & Styling Overhaul",
+        "changes": [
+          {
+            "name": "CSS Custom Properties",
+            "type": "new",
+            "description": "Implemented CSS variables for consistent theming across colors, fonts, breakpoints, and shadows. Enables easier maintenance and future theming."
+          },
+          {
+            "name": "Font Declaration Unification",
+            "type": "update",
+            "description": "Standardized font declarations between CSS and styled-components for consistency. Improved font loading with font-display: swap."
+          },
+          {
+            "name": "Enhanced CSS Reset",
+            "type": "update",
+            "description": "Improved CSS reset with box-sizing inheritance, font smoothing, and better base styles for cross-browser consistency."
+          }
+        ]
+      },
+      {
+        "title": "⚡ Performance Optimizations",
+        "changes": [
+          {
+            "name": "Unused Image Cleanup",
+            "type": "update",
+            "description": "Removed 9 unused image files saving ~18MB (33% reduction) in bundle size. Kept optimized versions and eliminated large originals."
+          },
+          {
+            "name": "Import Organization",
+            "type": "update",
+            "description": "Organized imports logically (React, third-party, local components, assets) and removed all unused imports across the codebase."
+          },
+          {
+            "name": "Component Code Deduplication",
+            "type": "update",
+            "description": "Eliminated duplicate styled components and consolidated common patterns into reusable components."
+          }
+        ]
+      },
+      {
+        "title": "🛠️ Backend Organization",
+        "changes": [
+          {
+            "name": "Playground Backend Structure",
+            "type": "new",
+            "description": "Created comprehensive playground-backend/ directory with organized subdirectories: apis/ (Python Spotify API), workers/ (Cloudflare Workers), demos/ (development apps), and docs/ (setup guides)."
+          },
+          {
+            "name": "Documentation Enhancement",
+            "type": "new",
+            "description": "Added comprehensive README files for the main repository, frontend project, and backend services with clear setup instructions and architecture explanations."
+          },
+          {
+            "name": "File Path Updates",
+            "type": "update",
+            "description": "Updated all documentation references to reflect the new organized file structure while maintaining backward compatibility for deployed services."
+          }
+        ]
+      },
+      {
+        "title": "🔧 Error Handling & Developer Experience",
+        "changes": [
+          {
+            "name": "Error Boundary Implementation",
+            "type": "new",
+            "description": "Created comprehensive ErrorBoundary component with development error details, user-friendly fallbacks, and recovery options."
+          },
+          {
+            "name": "Loading State Unification",
+            "type": "update",
+            "description": "Standardized loading components and patterns across all async operations for consistent user experience."
+          },
+          {
+            "name": "Lint Error Resolution",
+            "type": "fix",
+            "description": "Resolved all ESLint errors and warnings across the entire codebase for clean, maintainable code."
+          }
+        ]
+      },
+      {
+        "title": "🧭 Navigation Fixes",
+        "changes": [
+          {
+            "name": "Playground Navigation Consistency",
+            "type": "fix",
+            "description": "Fixed playground main page navigation to match About and Projects pages. Now properly returns to home page with TopNav instead of internal playground navigation."
+          },
+          {
+            "name": "Duplicate Navigation Removal",
+            "type": "fix",
+            "description": "Eliminated duplicate back buttons in playground by removing redundant TopNav/PlayNav components from individual playground pages."
+          },
+          {
+            "name": "External Link Security",
+            "type": "update",
+            "description": "Improved external link handling with proper window.open() usage and security attributes (noopener, noreferrer)."
+          }
+        ]
+      },
+      {
+        "title": "📊 Impact Summary",
+        "changes": [
+          {
+            "name": "Bundle Size Reduction",
+            "type": "improvement",
+            "description": "Achieved ~18MB reduction in asset size through unused image removal and code deduplication."
+          },
+          {
+            "name": "Code Maintainability",
+            "type": "improvement",
+            "description": "Centralized styling and components make future updates significantly easier with consistent patterns."
+          },
+          {
+            "name": "Performance Enhancement",
+            "type": "improvement",
+            "description": "Faster navigation through proper React Router usage and reduced bundle size for better loading times."
+          },
+          {
+            "name": "Developer Experience",
+            "type": "improvement",
+            "description": "Better error handling, organized file structure, and comprehensive documentation improve development workflow."
+          }
+        ]
+      }
+    ]
   }
 ]

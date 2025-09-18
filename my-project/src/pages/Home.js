@@ -1,4 +1,5 @@
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import styled from "styled-components";
 import ContactDialog from "../Components/Dialog";
@@ -110,30 +111,27 @@ const HoverableImageContainer = styled.div`
 
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const navigateToProjects = () => {
-    // Use JavaScript to navigate to the projects page
-    window.location.href = "/projects";
+    navigate("/projects");
   };
 
   const navigateToAbout = () => {
-    // Use JavaScript to navigate to the about page
-    window.location.href = "/about";
+    navigate("/about");
   };
   
   const navigateToResume = () => {
-    // Use JavaScript to navigate to the resume page
-    window.location.href = "/resume";
-  }
+    navigate("/resume");
+  };
 
   const navigateToPlayground = () => {
-    // Use JavaScript to navigate to the playground page
-    window.location.href = "/playground";
-  }
+    navigate("/playground");
+  };
 
   const navigateToPatchnotes = () => {
-    // Use JavaScript to navigate to the patchnotes page
-    window.location.href = "/patchnotes";
-  }
+    navigate("/patchnotes");
+  };
 
 
 

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import LinkIcon from '@mui/icons-material/Link';
 
@@ -34,10 +35,14 @@ const ProjectLink = styled.a`
 `;
 
 const ProjectImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 `;
 
@@ -55,21 +60,43 @@ const ProjectDesc = styled.p`
   line-height: 2.5rem;
 `
 
-export default function Project(props) {
+export default function Project({ title, description, image, url, imageAlt }) {
   return (
     <ProjectTile>
-      <ProjectImage alt="" src={props.image} />
+      <ProjectImage 
+        alt={imageAlt || `Screenshot of ${title} project`} 
+        src={image}
+        loading="lazy"
+        decoding="async"
+      />
       <ProjectInfo>
         <ProjectTitle>
-          <ProjectLink target="_blank" href={props.url || undefined} >
-            {props.title} { props.url ? <LinkIcon/> : null }
-          </ProjectLink>
+          {url ? (
+            <ProjectLink 
+              target="_blank" 
+              href={url}
+              rel="noopener noreferrer"
+              aria-label={`Visit ${title} project`}
+            >
+              {title} <LinkIcon aria-hidden="true" />
+            </ProjectLink>
+          ) : (
+            title
+          )}
         </ProjectTitle>
         <br />
         <ProjectDesc>
-          {props.description}
+          {description}
         </ProjectDesc>
       </ProjectInfo>
     </ProjectTile>
   );
 }
+
+Project.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  imageAlt: PropTypes.string
+};

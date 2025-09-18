@@ -126,74 +126,74 @@ const recipes = [
 // 0
 
 
-const Jeyuk =
-`
+// const Jeyuk =
+// `
 
-`
+// `
 
-const Salmon =
-`
+// const Salmon =
+// `
 
-`
+// `
 
-const SausageFest =
-`
+// const SausageFest =
+// `
 
-`
-// 10
+// `
+// // 10
 
-const LemongrassChicken =
-`
-`
+// const LemongrassChicken =
+// `
+// `
 
-const SoonDubu =
-`
+// const SoonDubu =
+// `
 
-`
+// `
 
-const PopcornChicken =
-`
-`
+// const PopcornChicken =
+// `
+// `
 
-const JapaneseCurryKatsu =
-`
+// const JapaneseCurryKatsu =
+// `
 
-`
+// `
 
-const ButterChicken =
-`
+// const ButterChicken =
+// `
 
-`
+// `
 
-//15 
+// //15 
 
-const Burritos =
-`
-`
+// const Burritos =
+// `
+// `
 
-const BirriaTacos =
-``
+// const BirriaTacos =
+// ``
 
-const ChineseVeggies =
-``
+// const ChineseVeggies =
+// ``
 
-const HongShaoRou =
-``
+// const HongShaoRou =
+// ``
 
 
-// 20
+// // 20
 
-const MapoTofu =
-`
-`
+// const MapoTofu =
+// `
+// `
 
-const HoneyButterChicken =
-`
-`
+// const HoneyButterChicken =
+// `
+// `
 
-const GochujangChicken =
-`
-`
+// const GochujangChicken =
+// `
+// `
 
 
 function Food() {

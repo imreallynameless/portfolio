@@ -1,40 +1,20 @@
-import React from 'react'
-import TopNav from '../Components/topnav'
-import Footer from '../Components/Footer'
-import styled from 'styled-components'
-import ProjectComponent from '../Components/Project'
-import clearvision from '../images/clearvision.jpg'
-import starrystocks from '../images/starrystocks.jpg'
-import webcrawler from '../images/webcrawler.png'
-import investology from '../images/investology.jpg'
-import website from '../images/website.png'
-import playground from '../images/playground.png'
+import React from 'react';
+import TopNav from '../Components/topnav';
+import styled from 'styled-components';
+import { FlexLayout, HeadingContainer, PageHeading } from '../Components/SharedStyledComponents';
+import ProjectComponent from '../Components/Project';
+import clearvision from '../images/clearvision.jpg';
+import starrystocks from '../images/starrystocks.jpg';
+import webcrawler from '../images/webcrawler.png';
+import investology from '../images/investology.jpg';
+import website from '../images/website.png';
+import playground from '../images/playground.png';
 
-const Layout = styled.main`
-  display: grid;
-  max-width: 1100px;
-  margin: auto;
-  align-items: center;
-  padding: 50px 20px;
+const ProjectsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 50px;
-
-  @media (max-width: 768px) {
-    max-width: 500px;
-  }
-`;
-
-const HeadingContainer = styled.div`
-  padding: 40px 0;
-`;
-
-const Heading = styled.h1`
-  font-family: "Inter", sans-serif;
-  font-size: 5rem;
-  letter-spacing: 0.4rem;
-  
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
+  width: 100%;
 `;
 
 const PGdescriptionText = `Created a playground that acts as sort of a playground for me to practice and test out new ideas and small projects.
@@ -74,50 +54,58 @@ Stored search quantities using various document database paradigms to improve ru
 function Projects() {
   return (
     <>
-    <TopNav />
-    <Layout>
+      <TopNav />
+      <FlexLayout>
         <HeadingContainer>
-          <Heading> projects </Heading>
+          <PageHeading>projects</PageHeading>
         </HeadingContainer>
-        <ProjectComponent
-          title="Playground"
-          description = {PGdescriptionText}
-          image = {playground}
-          url = "https://laywu.ca/playground"
-        />
-        <ProjectComponent
-          title="Personal Website"
-          description = {PWdescriptionText}
-          image = {website}
-          url = "https://laywu.ca/patchnotes"
-        />
-        <ProjectComponent
-          title="Investology"
-          description = {TSdescriptionText}
-          image = {investology}
-          url = "https://devpost.com/software/tarot-investing"
-        />
-        <ProjectComponent
-          title="Clear Vision"
-          description = {CVdescriptionText}
-          image = {clearvision}
-          url = "https://devpost.com/software/clean-vision"
+        <ProjectsContainer>
+          <ProjectComponent
+            title="Playground"
+            description={PGdescriptionText}
+            image={playground}
+            url="https://laywu.ca/playground"
+            imageAlt="Screenshot of Lei's playground website featuring various interactive components"
           />
-        <ProjectComponent
-          title="Starry Stocks"
-          description = {SSdescriptionText}
-          image = {starrystocks}
-          url = "https://devpost.com/software/solar-system-stocks"
-        />
-        <ProjectComponent
-          title="Keyword-Based Search Engine "
-          description = {KBSEdescriptionText}
-          image = {webcrawler}
-          url = ""
-        />
-      </Layout>
+          <ProjectComponent
+            title="Personal Website"
+            description={PWdescriptionText}
+            image={website}
+            url="https://laywu.ca/patchnotes"
+            imageAlt="Screenshot of Lei's personal portfolio website"
+          />
+          <ProjectComponent
+            title="Investology"
+            description={TSdescriptionText}
+            image={investology}
+            url="https://devpost.com/software/tarot-investing"
+            imageAlt="Screenshot of Investology app showing MBTI-based investment recommendations"
+          />
+          <ProjectComponent
+            title="Clear Vision"
+            description={CVdescriptionText}
+            image={clearvision}
+            url="https://devpost.com/software/clean-vision"
+            imageAlt="Screenshot of Clear Vision waste sorting AI application"
+          />
+          <ProjectComponent
+            title="Starry Stocks"
+            description={SSdescriptionText}
+            image={starrystocks}
+            url="https://devpost.com/software/solar-system-stocks"
+            imageAlt="Screenshot of Starry Stocks data visualization application"
+          />
+          <ProjectComponent
+            title="Keyword-Based Search Engine"
+            description={KBSEdescriptionText}
+            image={webcrawler}
+            url=""
+            imageAlt="Diagram of web crawler and search engine architecture"
+          />
+        </ProjectsContainer>
+      </FlexLayout>
     </>
-  )
+  );
 }
 
 export default Projects

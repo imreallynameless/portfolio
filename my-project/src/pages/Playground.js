@@ -1,47 +1,33 @@
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import TopNav from '../Components/topnav';
+import { PageLayout, HeadingContainer, PageHeading } from '../Components/SharedStyledComponents';
 import cook from "../images/cook.jpg";
 import spotify from "../images/spotify.png";
 import tft from "../images/tfts15.avif";
 import bookshelf from "../images/bookshelf.jpg";
 import strava from "../images/strava.webp";
+import poke from "../images/poke.webp";
 
-const PageLayout = styled.main`
-  display: grid;
+const PlaygroundLayout = styled(PageLayout)`
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 3.5rem 1fr 1fr 1fr;
-  max-width: 1100px;
-  margin: auto;
-  align-items: center;
-  padding: 45px 20px;
-  gap: 20px;
+  grid-auto-rows: 3.5rem 1fr 1fr 1fr 1fr;
   
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 7rem auto auto auto;
+    grid-auto-rows: 7rem auto auto auto auto;
     gap: 10px;
   }
 `;
 
-const HeadingContainer = styled.div`
+const PlaygroundHeadingContainer = styled(HeadingContainer)`
   grid-column: span 3;
   margin-bottom: 5rem;
-  text-align: center;
+  
   @media (max-width: 768px) {
     grid-column: span 2;
     margin-bottom: 3rem;
-  }
-    
-`;
-
-const Heading = styled.h1`
-  font-family: "Inter", sans-serif;
-  font-size: 3rem;
-  letter-spacing: 0.4rem;
-  
-  @media (max-width: 768px) {
-    font-size: 2rem;
   }
 `;
 
@@ -88,44 +74,50 @@ const HoverableImage = styled.img`
 `;
 
 export default function Playground() {
+  const navigate = useNavigate();
+
   const navigateToFood = () => {
-    window.location.href = "playground/food";
-  }
+    navigate("/playground/food");
+  };
   
   const navigateToMusic = () => {
-    window.location.href = "playground/music";
-  }
+    navigate("/playground/music");
+  };
 
   const navigateToTft = () => {
-    window.location.href = "playground/tft";
-  }
+    navigate("/playground/Tft");
+  };
   
   const navigateToBookshelf = () => {
-    window.location.href = "playground/bookbar";
-  }
+    navigate("/playground/bookbar");
+  };
   
   const navigateToStrava = () => {
-    window.location.href = "playground/strava";
-  }
+    navigate("/playground/strava");
+  };
+  
+  const navigateToPoke = () => {
+    navigate("/playground/poke");
+  };
   
   return (
     <>
-      <PageLayout>
-        <TopNav />
-        <HeadingContainer>
-          <Heading>welcome to all things playground</Heading>
-        </HeadingContainer>
+      <TopNav />
+      <PlaygroundLayout>
+        <PlaygroundHeadingContainer>
+          <PageHeading>welcome to all things playground</PageHeading>
+        </PlaygroundHeadingContainer>
         
         <TileContainer>
           <HoverableImageContainer onClick={navigateToStrava}>
             <HoverableImage src={strava} alt="strava activities" placeholder="blurred"/>
           </HoverableImageContainer>    
-          <Caption>stalk my runs</Caption>
+          <Caption>stalk my activity</Caption>
         </TileContainer>
         
         <TileContainer>
           <HoverableImageContainer onClick={navigateToMusic}>
-            <HoverableImage src={spotify} alt="Spotify" placeholder="blurred"/>
+            <HoverableImage src={spotify} alt="spotify" placeholder="blurred"/>
           </HoverableImageContainer>    
           <Caption>stalk my music</Caption>
         </TileContainer>
@@ -146,11 +138,18 @@ export default function Playground() {
 
         <TileContainer>
           <HoverableImageContainer onClick={navigateToFood}>
-            <HoverableImage src={cook} alt="Cooking" placeholder="blurred"/>
+            <HoverableImage src={cook} alt="cooking" placeholder="blurred"/>
           </HoverableImageContainer>    
           <Caption>recipes and eats</Caption>
         </TileContainer>
-      </PageLayout>
+
+        <TileContainer>
+          <HoverableImageContainer onClick={navigateToPoke}>
+            <HoverableImage src={poke} alt="poke mcp server" placeholder="blurred"/>
+          </HoverableImageContainer>    
+          <Caption>poke mcp server</Caption>
+        </TileContainer>
+      </PlaygroundLayout>
     </>
   );
 }

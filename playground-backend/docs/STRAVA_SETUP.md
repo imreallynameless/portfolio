@@ -217,7 +217,7 @@ Once deployed, your worker will provide these endpoints:
        });
        
        // Save to public directory
-       const outputPath = path.join(__dirname, '../my-project/public/strava-data.json');
+       const outputPath = path.join(__dirname, '../../my-project/public/strava-data.json');
        fs.writeFileSync(outputPath, JSON.stringify({
          activities: activitiesResponse.data,
          lastUpdated: new Date().toISOString()

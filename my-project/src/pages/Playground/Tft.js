@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PlayNav from '../../Components/playNav';
 
 const Layout = styled.main`
   display: flex;
@@ -447,8 +446,6 @@ function Tft() {
     };
   
     return (
-      <>
-        <PlayNav />
         <Layout>
           <HeadingContainer>
             <Heading>stalk my tft match history</Heading>
@@ -603,7 +600,6 @@ function Tft() {
             </DetailedHistoryContainer>
           )}
         </Layout>
-      </>
     );
   }
   

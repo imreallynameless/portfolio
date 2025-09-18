@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PlayNav from '../../Components/playNav'
 import React, { useState, useEffect } from "react";
 
 const PageLayout = styled.main`
@@ -226,9 +225,7 @@ export default function Bookbar() {
   const statuses = ["finished", "reading", "to read", "dropped"];
 
   return (
-    <>
-      <PlayNav/>
-      <PageLayout>
+    <PageLayout>
         <HeadingContainer>
           <Heading>book bar</Heading>
           <Caption>a collection of books I'm reading or have read.</Caption>
@@ -283,6 +280,5 @@ export default function Bookbar() {
           })
         )}
       </PageLayout>
-    </>
   );
 }

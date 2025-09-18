@@ -1,6 +1,31 @@
-# Getting Started with Create React App
+# Lei Wu's Personal Website
+
+A modern React-based personal portfolio website featuring a playground with various interactive components.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## 🚀 Features
+
+- **Home**: Personal introduction and navigation
+- **About**: Background and experience
+- **Projects**: Portfolio of development projects
+- **Resume**: Professional experience and skills
+- **Playground**: Interactive components including:
+  - Strava activity tracking
+  - Spotify music integration
+  - TFT (Teamfight Tactics) match history
+  - Book reading list
+  - Recipe collection
+  - MCP server demos
+
+## 🛠 Backend Services
+
+The playground features are powered by backend services located in `../playground-backend/`:
+- **Cloudflare Workers**: For Strava and TFT data
+- **Python APIs**: For Spotify integration
+- **Demos**: Standalone applications
+
+See `../playground-backend/README.md` for backend setup instructions.
 
 ## Available Scripts
 

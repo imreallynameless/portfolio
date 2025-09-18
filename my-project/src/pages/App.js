@@ -15,6 +15,7 @@ const Music = lazy(() => import("./Playground/Music"));
 const Tft = lazy(() => import("./Playground/Tft"));
 const Bookbar = lazy(() => import("./Playground/Bookbar"));
 const Strava = lazy(() => import("./Playground/Strava"));
+const Poke = lazy(() => import("./Playground/Poke"));
 const Patchnotes = lazy(() => import('./Patchnotes'));
 const Patch = lazy(() => import('./Patch'));
 
@@ -80,11 +81,6 @@ const router = createBrowserRouter([
           </Suspense>
         ) 
       },
-    ]
-  },
-  {
-    element: <PlaygroundLayout />,
-    children: [
       { 
         path: "/playground", 
         element: (
@@ -93,6 +89,11 @@ const router = createBrowserRouter([
           </Suspense>
         ) 
       },
+    ]
+  },
+  {
+    element: <PlaygroundLayout />,
+    children: [
       { 
         path: "/playground/food", 
         element: (
@@ -126,10 +127,18 @@ const router = createBrowserRouter([
         ) 
       },
       { 
-        path: "/playground/strava", 
+        path: "/playground/strava",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <Strava />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "/playground/poke",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Poke />
           </Suspense>
         ) 
       },
