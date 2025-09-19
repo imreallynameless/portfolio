@@ -10,13 +10,27 @@ const Nav = styled.nav`
   left: 20px;
   width: 50px;
   height: 50px;
+  z-index: 10;
 `;
 
-const CustomLink = styled(Link)`
+const BackButton = styled(Link)`
   width: 100%;
   height: 100%;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus {
+    outline: 2px solid #fc4c02;
+    outline-offset: 2px;
+  }
 `;
 
 const Patch = () => {
@@ -49,9 +63,13 @@ const Patch = () => {
     return (
         <>
             <Nav>
-                <CustomLink to="/patchnotes">
+                <BackButton 
+                    to="/patchnotes"
+                    aria-label="Back to patch notes list"
+                    title="Back to patch notes"
+                >
                     <ArrowBack style={{ fontSize: 40, color: "black" }} />
-                </CustomLink>
+                </BackButton>
             </Nav>
             <div className="patch-notes-container">
                 <div className="patch">
