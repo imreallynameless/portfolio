@@ -1,0 +1,22 @@
+import styled from "styled-components";
+import Icons from "./Icons";
+
+const FooterPage = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+`;
+
+const Author = styled.p``;
+
+const Footer: React.FC = () => (
+  <FooterPage id="connect">
+    <Author>lei wu - sept 2025</Author>
+    <Icons />
+  </FooterPage>
+);
+
+export default Footer;
+
