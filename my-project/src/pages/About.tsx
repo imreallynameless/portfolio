@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "./App.css";
 import TopNav from "../Components/topnav";
 import { GridLayout, HeadingContainer, PageHeading, BodyText } from "../Components/SharedStyledComponents";
 import Me from "../images/yes2.jpg";

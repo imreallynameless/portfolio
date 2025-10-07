@@ -429,5 +429,53 @@
         ]
       }
     ]
+  },
+  {
+    "patchVersion": "2.0.1",
+    "date": "2025-10-07",
+    "title": "TypeScript Migration!",
+    "summary": "Captured the TypeScript migration commit alongside the JavaScript cleanup, Tailwind tweaks, and Jest smoke-test fix so the repo history and patch notes stay in sync.",
+    "sections": [
+      {
+        "title": "🧹 Maintenance",
+        "changes": [
+          {
+            "name": "Legacy JavaScript Removal",
+            "type": "update",
+            "description": "Deleted redundant .js files across pages, components, utilities, and scripts now backed by TypeScript implementations to keep the codebase consistent and prevent drift."
+          },
+          {
+            "name": "TypeScript Migration Commit",
+            "type": "new",
+            "description": "Captured the `afa119a` TypeScript migration work in this patch so the notes reflect the underlying repo history that triggered the cleanup."
+          },
+          {
+            "name": "Tailwind Content Scope",
+            "type": "update",
+            "description": "Restricted Tailwind's content glob to only .ts and .tsx sources so the JIT pipeline no longer scans removed JavaScript files."
+          }
+        ]
+      },
+      {
+        "title": "🎨 Styling",
+        "changes": [
+          {
+            "name": "App Styles Cleanup",
+            "type": "fix",
+            "description": "Removed stale App.css imports from Home, About, Playground, and 404 pages after consolidating styling into styled-components, eliminating missing stylesheet errors."
+          }
+        ]
+      },
+      {
+        "title": "🧪 Testing",
+        "changes": [
+          {
+            "name": "App Test Import Fix",
+            "type": "fix",
+            "description": "Restored the App import in App.test.tsx so the render smoke test executes without ReferenceError after the file cleanup."
+          }
+        ]
+      }
+    ]
   }
 ]

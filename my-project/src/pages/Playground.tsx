@@ -1,4 +1,3 @@
-import "./App.css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopNav from "../Components/topnav";
