@@ -108,10 +108,6 @@ This is a personal portfolio project, but suggestions and feedback are welcome!
 3. Make your changes
 4. Submit a pull request
 
-## 📄 License
-
-This project is personal intellectual property. Please respect the code and content.
-
 ## 📧 Contact
 
 - **Website**: [laywu.ca](https://laywu.ca)
@@ -120,4 +116,4 @@ This project is personal intellectual property. Please respect the code and cont
 
 ---
 
-Built with ❤️ by me
+Built with ❤️ by me & AI friends
