@@ -15,6 +15,10 @@ type BookRow = {
   [key: string]: string | undefined;
 };
 
+type BookWithCover = BookRow & {
+  cover?: string | null;
+};
+
 const fetchBookCover = async (title: string, author: string): Promise<string | null> => {
   if (!API_KEY) {
     console.warn("GOOGLE_BOOKS_API_KEY is not set; skipping cover lookup.");
@@ -44,14 +48,55 @@ const fetchBookCover = async (title: string, author: string): Promise<string | n
   return null;
 };
 
+const loadExistingBookData = (): Map<string, BookWithCover> => {
+  const existingCovers = new Map<string, BookWithCover>();
+  
+  if (fs.existsSync(JSON_PATH)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(JSON_PATH, "utf8")) as BookWithCover[];
+      for (const book of existingData) {
+        if (book.Title && book.Author) {
+          const key = `${book.Title}|${book.Author}`.toLowerCase();
+          existingCovers.set(key, book);
+        }
+      }
+      console.log(`Loaded ${existingCovers.size} existing book covers from cache.`);
+    } catch (error) {
+      console.warn("Could not load existing book data, starting fresh:", error);
+    }
+  }
+  
+  return existingCovers;
+};
+
 const processBooks = async (): Promise<void> => {
   const csvFile = fs.readFileSync(CSV_PATH, "utf8");
   const parsed = Papa.parse<BookRow>(csvFile, { header: true });
+  
+  // Load existing book data to preserve covers
+  const existingBookData = loadExistingBookData();
 
   const booksWithCovers = await Promise.all(
     parsed.data.map(async (book) => {
       if (book.Title && book.Author) {
-        const cover = book.Cover || (await fetchBookCover(book.Title, book.Author));
+        const key = `${book.Title}|${book.Author}`.toLowerCase();
+        const existingBook = existingBookData.get(key);
+        
+        // Use existing cover if available, otherwise try CSV Cover field, then fetch
+        let cover: string | null | undefined = existingBook?.cover;
+        
+        if (!cover && book.Cover) {
+          cover = book.Cover;
+        }
+        
+        // Only fetch if we don't have a cover
+        if (!cover) {
+          console.log(`Fetching cover for: ${book.Title}`);
+          cover = await fetchBookCover(book.Title, book.Author);
+        } else {
+          console.log(`Using cached cover for: ${book.Title}`);
+        }
+        
         return { ...book, cover };
       }
       return book;
