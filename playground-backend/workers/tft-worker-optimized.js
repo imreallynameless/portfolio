@@ -46,6 +46,13 @@ function getCorsHeaders() {
   };
 }
 
+function rateLimitedResponse() {
+  return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
+    status: 429,
+    headers: { "Content-Type": "application/json", ...getCorsHeaders() }
+  });
+}
+
 async function handleHello(request) {
   return new Response("Hello! Optimized TFT API with reduced requests.", {
     headers: getCorsHeaders()
@@ -112,10 +119,7 @@ async function handleTFTData(request) {
           headers: { "Content-Type": "application/json", ...getCorsHeaders() }
         });
       } else if (accountResponse.status === 429) {
-        return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
-          status: 429,
-          headers: { "Content-Type": "application/json", ...getCorsHeaders() }
-        });
+        return rateLimitedResponse();
       }
       throw new Error(`Failed to fetch account data: ${accountResponse.status}`);
     }
@@ -141,10 +145,7 @@ async function handleTFTData(request) {
     } else if (rankResponse.status === 404) {
       console.log(`Player is unranked`);
     } else if (rankResponse.status === 429) {
-      return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
-        status: 429,
-        headers: { "Content-Type": "application/json", ...getCorsHeaders() }
-      });
+      return rateLimitedResponse();
     } else {
       riotDegraded = true;
       console.log(`Rank request failed: ${rankResponse.status}`);
@@ -161,10 +162,7 @@ async function handleTFTData(request) {
 
     let matchHistory = [];
     if (matchResponse.status === 429) {
-      return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
-        status: 429,
-        headers: { "Content-Type": "application/json", ...getCorsHeaders() }
-      });
+      return rateLimitedResponse();
     } else if (matchResponse.ok) {
       const matchIds = await matchResponse.json();
       console.log(`Got ${matchIds.length} match IDs, fetching details in batches...`);
@@ -174,7 +172,8 @@ async function handleTFTData(request) {
       // key's 20 req/sec limit whenever two visitors searched close together.
       const matchDetails = [];
       const ids = matchIds.slice(0, 10);
-      for (let start = 0; start < ids.length; start += 5) {
+      let rateLimited = false;
+      for (let start = 0; start < ids.length && !rateLimited; start += 5) {
         const batch = await Promise.all(
           ids.slice(start, start + 5).map(async (matchId) => {
             try {
@@ -195,15 +194,17 @@ async function handleTFTData(request) {
             }
           })
         );
+        // Stop before the next batch: firing 5 more calls into a window Riot
+        // has already closed just deepens the rate limit we're reporting.
+        rateLimited = batch.includes("rate-limited");
         matchDetails.push(...batch);
-        if (start + 5 < ids.length) await new Promise((resolve) => setTimeout(resolve, 250));
+        if (!rateLimited && start + 5 < ids.length) {
+          await new Promise((resolve) => setTimeout(resolve, 250));
+        }
       }
 
-      if (matchDetails.includes("rate-limited")) {
-        return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
-          status: 429,
-          headers: { "Content-Type": "application/json", ...getCorsHeaders() }
-        });
+      if (rateLimited) {
+        return rateLimitedResponse();
       }
 
       matchHistory = matchDetails.filter(m => m && m.info && m.info.queue_id === 1100);
