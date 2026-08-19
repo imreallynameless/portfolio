@@ -134,12 +134,19 @@ async function handleTFTData(request) {
     );
 
     let rankData = [];
+    let riotDegraded = false; // any non-404 failure below: respond, but never cache
     if (rankResponse.ok) {
       rankData = await rankResponse.json();
       console.log(`✅ Got rank data: ${rankData[0]?.tier} ${rankData[0]?.rank}`);
     } else if (rankResponse.status === 404) {
       console.log(`Player is unranked`);
+    } else if (rankResponse.status === 429) {
+      return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
+        status: 429,
+        headers: { "Content-Type": "application/json", ...getCorsHeaders() }
+      });
     } else {
+      riotDegraded = true;
       console.log(`Rank request failed: ${rankResponse.status}`);
     }
 
@@ -153,28 +160,57 @@ async function handleTFTData(request) {
     );
 
     let matchHistory = [];
-    if (matchResponse.ok) {
+    if (matchResponse.status === 429) {
+      return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
+        status: 429,
+        headers: { "Content-Type": "application/json", ...getCorsHeaders() }
+      });
+    } else if (matchResponse.ok) {
       const matchIds = await matchResponse.json();
-      console.log(`Got ${matchIds.length} match IDs, fetching details for all 10...`);
-      
-      // Get details for all 10 recent matches
-      const matchDetails = await Promise.all(
-        matchIds.slice(0, 10).map(async (matchId) => {
-          try {
-            const detailResponse = await fetch(
-              `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}`,
-              { headers: { "X-Riot-Token": RIOT_API_KEY } }
-            );
-            return detailResponse.ok ? await detailResponse.json() : null;
-          } catch (error) {
-            console.error(`Failed to fetch match ${matchId}:`, error);
-            return null;
-          }
-        })
-      );
-      
-      matchHistory = matchDetails.filter(m => m && m.info.queue_id === 1100);
+      console.log(`Got ${matchIds.length} match IDs, fetching details in batches...`);
+
+      // Batches of 5 with a small gap: an uncached lookup already spends 3
+      // calls before this point, and a 10-wide burst tripped the personal
+      // key's 20 req/sec limit whenever two visitors searched close together.
+      const matchDetails = [];
+      const ids = matchIds.slice(0, 10);
+      for (let start = 0; start < ids.length; start += 5) {
+        const batch = await Promise.all(
+          ids.slice(start, start + 5).map(async (matchId) => {
+            try {
+              const detailResponse = await fetch(
+                `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}`,
+                { headers: { "X-Riot-Token": RIOT_API_KEY } }
+              );
+              if (detailResponse.status === 429) return "rate-limited";
+              if (!detailResponse.ok) {
+                riotDegraded = true;
+                return null;
+              }
+              return await detailResponse.json();
+            } catch (error) {
+              console.error(`Failed to fetch match ${matchId}:`, error);
+              riotDegraded = true;
+              return null;
+            }
+          })
+        );
+        matchDetails.push(...batch);
+        if (start + 5 < ids.length) await new Promise((resolve) => setTimeout(resolve, 250));
+      }
+
+      if (matchDetails.includes("rate-limited")) {
+        return new Response(JSON.stringify({ error: "Rate limited. Please try again in a few seconds." }), {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...getCorsHeaders() }
+        });
+      }
+
+      matchHistory = matchDetails.filter(m => m && m.info && m.info.queue_id === 1100);
       console.log(`✅ Got ${matchHistory.length} ranked matches`);
+    } else {
+      riotDegraded = true;
+      console.log(`Match ids request failed: ${matchResponse.status}`);
     }
 
     // Combine all data
@@ -188,9 +224,14 @@ async function handleTFTData(request) {
       }
     };
 
-    // Cache the result
-    cache.set(cacheKey, { data: combinedData, timestamp: Date.now() });
-    console.log(`✅ Cached result for ${cacheKey}`);
+    // Cache only healthy, non-empty results: a cached failure would make a
+    // real account look blank to every visitor for CACHE_DURATION.
+    if (!riotDegraded && (rankData.length > 0 || matchHistory.length > 0)) {
+      cache.set(cacheKey, { data: combinedData, timestamp: Date.now() });
+      console.log(`✅ Cached result for ${cacheKey}`);
+    } else {
+      console.log(`Skipping cache for ${cacheKey} (degraded=${riotDegraded}, empty=${rankData.length === 0 && matchHistory.length === 0})`);
+    }
 
     return new Response(JSON.stringify(combinedData), {
       headers: { "Content-Type": "application/json", ...getCorsHeaders() },
