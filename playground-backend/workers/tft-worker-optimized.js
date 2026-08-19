@@ -224,13 +224,15 @@ async function handleTFTData(request) {
       }
     };
 
-    // Cache only healthy, non-empty results: a cached failure would make a
-    // real account look blank to every visitor for CACHE_DURATION.
-    if (!riotDegraded && (rankData.length > 0 || matchHistory.length > 0)) {
+    // Cache only healthy results: a cached failure would make a real account
+    // look blank to every visitor for CACHE_DURATION. An empty result is still
+    // cached — a genuinely unranked player is a correct answer, and re-fetching
+    // it on every request would spend the API budget this worker is conserving.
+    if (!riotDegraded) {
       cache.set(cacheKey, { data: combinedData, timestamp: Date.now() });
       console.log(`✅ Cached result for ${cacheKey}`);
     } else {
-      console.log(`Skipping cache for ${cacheKey} (degraded=${riotDegraded}, empty=${rankData.length === 0 && matchHistory.length === 0})`);
+      console.log(`Skipping cache for ${cacheKey} (degraded Riot response)`);
     }
 
     return new Response(JSON.stringify(combinedData), {
