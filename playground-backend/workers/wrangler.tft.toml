@@ -15,3 +15,12 @@ main = "tft-worker-optimized.js"
 # 2024-10-14), a promise-scheduling fix worth keeping now that the match-detail
 # batching awaits a setTimeout promise.
 compatibility_date = "2025-02-03"
+
+# Off deliberately. Wrangler enables Preview URLs by default when a workers.dev
+# route exists, which makes EVERY uploaded version routable at
+# <version-prefix>-riot-tft.leiwuhoo.workers.dev -- publicly, unauthenticated,
+# and with the production RIOT_API_KEY bound. That retroactively republishes
+# superseded versions, including pre-hardening ones that cache failures and
+# burst 10 match-detail calls at once. We deploy straight to production and
+# never use version previews, so this buys nothing and costs a personal API key.
+preview_urls = false
