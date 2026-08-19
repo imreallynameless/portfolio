@@ -1,0 +1,11 @@
+# Deploy config for the TFT worker (separate file because wrangler.toml is
+# one-worker-per-config and that one belongs to strava-worker).
+#
+#   npx wrangler deploy -c wrangler.tft.toml
+#
+# RIOT_API_KEY is a secret and is deliberately NOT declared here. Set it once
+# with `npx wrangler secret put RIOT_API_KEY -c wrangler.tft.toml`; secrets are
+# stored separately from the script and survive subsequent deploys.
+name = "riot-tft"
+main = "tft-worker-optimized.js"
+compatibility_date = "2024-09-01"
