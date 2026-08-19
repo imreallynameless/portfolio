@@ -8,4 +8,10 @@
 # stored separately from the script and survive subsequent deploys.
 name = "riot-tft"
 main = "tft-worker-optimized.js"
-compatibility_date = "2024-09-01"
+# Matches the date already live on the riot-tft worker. The worker predates this
+# config (it was only ever updated by pasting into the Cloudflare dashboard), so
+# a lower date here would silently roll the runtime back on the first deploy --
+# notably turning off handle_cross_request_promise_resolution (on since
+# 2024-10-14), a promise-scheduling fix worth keeping now that the match-detail
+# batching awaits a setTimeout promise.
+compatibility_date = "2025-02-03"
